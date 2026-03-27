@@ -1,0 +1,14 @@
+{
+  "name": "Mehdi Said — Dashboard",
+  "short_name": "Mehdi",
+  "description": "Personal finance, life & career dashboard",
+  "start_url": "/Mehdi-Dashboard-/",
+  "display": "standalone",
+  "background_color": "#08090d",
+  "theme_color": "#08090d",
+  "orientation": "portrait",
+  "icons": [
+    {"src": "icon-192.png","sizes": "192x192","type": "image/png","purpose": "any maskable"},
+    {"src": "icon-512.png","sizes": "512x512","type": "image/png","purpose": "any maskable"}
+  ]
+}
