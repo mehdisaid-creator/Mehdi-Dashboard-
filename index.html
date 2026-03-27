@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mehdi">
+<meta name="theme-color" content="#08090d">
+<link rel="manifest" href="manifest.json">
+<title>Mehdi Said</title>
+<style>
+:root{--bg:#08090d;--s1:#0d0e13;--s2:#12131a;--s3:#1a1b24;--s4:#22232e;--gold:#c8a96e;--gold-dim:rgba(200,169,110,0.15);--gold-glow:rgba(200,169,110,0.06);--ink1:#eeeae3;--ink2:#8a8680;--ink3:#3e3d3a;--line:rgba(255,255,255,0.05);--line2:rgba(255,255,255,0.09);--green:#52d68a;--green-dim:rgba(82,214,138,0.1);--amber:#f5b942;--amber-dim:rgba(245,185,66,0.1);--red:#f07070;--red-dim:rgba(240,112,112,0.1);--blue:#6baed6;--blue-dim:rgba(107,174,214,0.1);--r:18px;--rm:12px;--nav-h:76px;--serif:'Georgia',serif;--sans:system-ui,sans-serif;--mono:monospace;--safe-b:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink1);font-family:var(--sans);font-size:15px;line-height:1.5;min-height:100%;-webkit-font-smoothing:antialiased;padding-bottom:calc(var(--nav-h) + var(--safe-b))}
+body::before{content:'';position:fixed;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);z-index:1000;pointer-events:none}
+.screen{display:none;padding:0 16px 24px}
+.screen.active{display:block}
+.topbar{padding:52px 16px 16px;display:flex;align-items:flex-end;justify-content:space-between;position:sticky;top:0;background:var(--bg);z-index:10;border-bottom:0.5px solid var(--line);margin-bottom:20px}
+.tb-title{font-family:var(--serif);font-size:26px;color:var(--ink1)}
+.tb-title span{color:var(--gold);font-style:italic}
+.tb-date{font-family:var(--mono);font-size:10px;color:var(--ink3);letter-spacing:.06em}
+.tb-saved{font-family:var(--mono);font-size:9px;color:var(--green);opacity:0;transition:opacity .3s;margin-top:2px}
+.tb-saved.show{opacity:1}
+.nav{position:fixed;bottom:0;left:0;right:0;height:calc(var(--nav-h) + var(--safe-b));padding-bottom:var(--safe-b);background:var(--s1);border-top:0.5px solid var(--line2);display:flex;align-items:center;justify-content:space-around;z-index:100}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 4px;background:none;border:none;cursor:pointer;color:var(--ink3);transition:color .2s;font-family:var(--sans);-webkit-tap-highlight-color:transparent}
+.nav-item.active{color:var(--gold)}
+.nav-dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:0;transition:opacity .2s}
+.nav-item.active .nav-dot{opacity:1}
+.nav-icon{font-size:22px;line-height:1}
+.nav-label{font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.card{background:var(--s1);border:0.5px solid var(--line);border-radius:var(--r);margin-bottom:12px;overflow:hidden}
+.card-body{padding:18px}
+.card-label{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px}
+.card-big{font-family:var(--serif);font-size:38px;color:var(--ink1);line-height:1}
+.card-big.gold{color:var(--gold)}
+.card-big.green{color:var(--green)}
+.card-sub{font-size:12px;color:var(--ink3);margin-top:5px}
+.hero{background:var(--s1);border:0.5px solid rgba(200,169,110,.15);border-radius:var(--r);padding:22px 20px;margin-bottom:14px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,var(--gold-dim) 0%,transparent 70%);pointer-events:none}
+.hero-label{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.hero-value{font-family:var(--serif);font-size:46px;color:var(--ink1);line-height:1;margin-bottom:6px}
+.hero-sub{font-size:12px;color:var(--ink3)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.mini-card{background:var(--s1);border:0.5px solid var(--line);border-radius:var(--rm);padding:14px 12px}
+.mini-label{font-size:10px;color:var(--ink3);margin-bottom:5px}
+.mini-val{font-size:17px;font-weight:500;color:var(--ink1)}
+.mini-sub{font-size:10px;color:var(--ink3);margin-top:3px}
+.row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:0.5px solid var(--line)}
+.row:last-child{border-bottom:none}
+.row-label{font-size:13px;color:var(--ink2)}
+.row-sub{font-size:10px;color:var(--ink3);margin-top:2px}
+.row-val{font-family:var(--mono);font-size:13px;color:var(--ink1);text-align:right}
+.row-val.gold{color:var(--gold)}.row-val.green{color:var(--green)}.row-val.red{color:var(--red)}.row-val.amber{color:var(--amber)}
+.editable-val{background:transparent;border:none;border-bottom:0.5px solid var(--ink3);outline:none;color:var(--ink1);font-family:var(--mono);font-size:13px;text-align:right;width:90px;padding:2px 0;caret-color:var(--gold)}
+.editable-val:focus{border-color:var(--gold)}
+.badge{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:20px;border:0.5px solid;white-space:nowrap}
+.badge-gold{color:var(--gold);border-color:var(--gold);background:var(--gold-dim)}.badge-green{color:var(--green);border-color:var(--green);background:var(--green-dim)}.badge-amber{color:var(--amber);border-color:var(--amber);background:var(--amber-dim)}.badge-red{color:var(--red);border-color:var(--red);background:var(--red-dim)}
+.prog-wrap{margin-bottom:14px}.prog-wrap:last-child{margin-bottom:0}
+.prog-header{display:flex;justify-content:space-between;margin-bottom:6px}
+.prog-label{font-size:12px;color:var(--ink2)}.prog-val{font-size:11px;font-family:var(--mono);color:var(--ink3)}
+.prog-track{height:5px;background:var(--s4);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;border-radius:3px;transition:width .7s ease}
+.fill-gold{background:var(--gold)}.fill-green{background:var(--green)}.fill-blue{background:var(--blue)}.fill-amber{background:var(--amber)}
+.goal-item{display:flex;gap:14px;padding:12px 0;border-bottom:0.5px solid var(--line);align-items:flex-start}
+.goal-item:last-child{border-bottom:none}
+.goal-tick{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--ink3);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all .25s;font-size:12px;margin-top:1px;-webkit-tap-highlight-color:transparent}
+.goal-tick.done{background:var(--green);border-color:var(--green);color:#06130d}
+.goal-tick.urgent{border-color:var(--red);color:var(--red);font-size:14px}
+.goal-text-wrap{flex:1}.goal-text{font-size:13px;color:var(--ink2);line-height:1.5}
+.goal-text.done{text-decoration:line-through;color:var(--ink3)}
+.goal-due{font-size:10px;color:var(--ink3);font-family:var(--mono);margin-top:3px}
+.goal-due.urgent{color:var(--red)}
+.cf-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.cf-item{text-align:center;flex:1}
+.cf-mono{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--ink3);margin-bottom:4px}
+.cf-big{font-family:var(--serif);font-size:24px;line-height:1}
+.cf-big.in{color:var(--green)}.cf-big.out{color:var(--red)}.cf-big.net{color:var(--gold)}
+.cf-divider{width:0.5px;height:40px;background:var(--line2)}
+.cf-bar{height:6px;background:var(--s4);border-radius:3px;overflow:hidden;margin-top:2px}
+.cf-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--green),var(--gold));transition:width .6s}
+.ai-btn{width:100%;padding:17px;background:var(--gold-dim);border:0.5px solid rgba(200,169,110,.3);border-radius:var(--r);color:var(--gold);font-family:var(--sans);font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px;letter-spacing:.02em;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.ai-btn:active{transform:scale(.98)}.ai-btn:disabled{opacity:.4;pointer-events:none}
+.ai-spin{width:16px;height:16px;border:2px solid var(--gold-dim);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;display:none}
+.ai-spin.on{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ai-result{background:var(--s1);border:0.5px solid var(--line2);border-radius:var(--r);padding:18px;margin-bottom:14px;display:none;font-size:13px;line-height:1.85;color:var(--ink2)}
+.ai-result.on{display:block}
+.ai-section-head{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin:14px 0 6px}
+.ai-section-head:first-child{margin-top:0}
+.ai-bullet{padding-left:14px;position:relative;margin-bottom:5px}
+.ai-bullet::before{content:'›';position:absolute;left:0;color:var(--gold)}
+.prop-head{padding:16px 18px;display:flex;align-items:flex-start;justify-content:space-between;background:var(--s2)}
+.prop-name{font-family:var(--serif);font-size:18px;color:var(--ink1)}
+.prop-addr{font-size:11px;color:var(--ink3);margin-top:3px;line-height:1.4}
+.watch-item{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:0.5px solid var(--line)}
+.watch-item:last-child{border-bottom:none}
+.watch-circle{width:40px;height:40px;border-radius:50%;background:var(--s3);border:0.5px solid var(--line2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.watch-brand{font-size:9px;color:var(--ink3);font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.watch-name{font-size:13px;color:var(--ink1);margin-top:2px}
+.watch-note{font-size:10px;color:var(--amber);margin-top:2px}
+.watch-price{font-family:var(--mono);font-size:13px;color:var(--gold);margin-left:auto}
+.girl-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.girl-card{background:var(--s1);border:0.5px solid var(--line);border-radius:var(--r);padding:16px}
+.girl-name-big{font-family:var(--serif);font-size:22px;font-style:italic;color:var(--gold);margin-bottom:12px}
+.timeline-item{display:flex;gap:14px;padding-bottom:20px;position:relative}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-item::before{content:'';position:absolute;left:15px;top:30px;bottom:0;width:0.5px;background:var(--line2)}
+.timeline-item:last-child::before{display:none}
+.tl-dot{width:30px;height:30px;border-radius:50%;border:0.5px solid var(--line2);background:var(--s2);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;z-index:1}
+.tl-dot.done{background:var(--green-dim);border-color:var(--green)}.tl-dot.urgent{background:var(--red-dim);border-color:var(--red)}
+.tl-content{flex:1;padding-top:4px}
+.tl-title{font-size:13px;color:var(--ink1);font-weight:500}
+.tl-date{font-size:10px;font-family:var(--mono);color:var(--ink3);margin-top:3px}
+.screen-title{font-family:var(--serif);font-size:28px;color:var(--ink1);margin-bottom:18px}
+.section-title{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin:20px 0 10px}
+.section-title:first-child{margin-top:0}
+.note{border-radius:var(--rm);padding:12px 14px;font-size:12px;line-height:1.65;margin-top:10px}
+.note-gold{background:var(--gold-glow);border:0.5px solid rgba(200,169,110,.15);color:var(--gold)}
+.note-red{background:var(--red-dim);border:0.5px solid rgba(240,112,112,.2);color:var(--red)}
+.note-green{background:var(--green-dim);border:0.5px solid rgba(82,214,138,.2);color:var(--green)}
+.note-amber{background:var(--amber-dim);border:0.5px solid rgba(245,185,66,.2);color:var(--amber)}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="tb-title">Mehdi <span>Said</span></div><div><div class="tb-date" id="topDate"></div><div class="tb-saved" id="savedPill">Saved ✓</div></div></div>
+<div class="screen active" id="s-overview">
+<div class="hero"><div class="hero-label">Total Net Worth</div><div class="hero-value" id="nwDisplay">£1,101,588</div><div class="hero-sub">Growing · RVP Month 2 · Exceptional rated</div></div>
+<div class="g3"><div class="mini-card"><div class="mini-label">Savings</div><div class="mini-val">£<span id="ov-savings">36,000</span></div><div class="mini-sub">Floor: £50k</div></div><div class="mini-card"><div class="mini-label">Equity</div><div class="mini-val">£819k</div><div class="mini-sub">2 props</div></div><div class="mini-card"><div class="mini-label">Pension</div><div class="mini-val">£136k</div><div class="mini-sub">Nominated ✓</div></div></div>
+<div class="g2"><div class="mini-card"><div class="mini-label">Monthly in</div><div class="mini-val" style="color:var(--green);" id="ov-in">£10,023</div><div class="mini-sub">salary+rental</div></div><div class="mini-card"><div class="mini-label">Surplus /mo</div><div class="mini-val" style="color:var(--gold);" id="ov-surplus">—</div><div class="mini-sub">after bills</div></div></div>
+<div class="card" style="border-color:rgba(200,169,110,.2);"><div class="card-body"><div style="display:flex;align-items:center;justify-content:space-between;"><div><div class="card-label">FY27 Rating</div><div style="font-family:var(--serif);font-size:26px;color:var(--gold);margin-top:4px;">Exceptional</div><div style="font-size:11px;color:var(--ink3);margin-top:4px;">Comp details: Mar 31 – Apr 10</div></div><div class="badge badge-gold">TOP BAND</div></div><div class="note note-gold" style="margin-top:12px;">115–140%+ bonus · 20–40% larger RSU grant.</div></div></div>
+<button class="ai-btn" id="briefBtn" onclick="runBrief()"><div class="ai-spin" id="briefSpin"></div><span id="briefTxt">✦ Generate Morning Brief</span></button>
+<div class="ai-result" id="briefOut"></div>
+<div class="section-title">Urgent Actions</div>
+<div class="card"><div class="card-body" id="urgentList"></div></div>
+</div>
+<div class="screen" id="s-money">
+<div class="screen-title">Money</div>
+<div class="card"><div class="card-body"><div class="card-label">Monthly cashflow</div><div class="cf-row"><div class="cf-item"><div class="cf-mono">IN</div><div class="cf-big in" id="cf-in">£10,023</div></div><div class="cf-divider"></div><div class="cf-item"><div class="cf-mono">OUT</div><div class="cf-big out" id="cf-out">—</div></div><div class="cf-divider"></div><div class="cf-item"><div class="cf-mono">NET</div><div class="cf-big net" id="cf-net">—</div></div></div><div class="cf-bar"><div class="cf-bar-fill" id="cf-bar" style="width:50%"></div></div></div></div>
+<div class="section-title">Savings</div>
+<div class="card"><div class="card-body"><div style="display:flex;align-items:baseline;gap:6px;margin-bottom:12px;"><div style="font-family:var(--serif);font-size:34px;">£</div><input type="number" class="editable-val" style="font-size:28px;width:120px;" id="savingsInput" value="36000" oninput="updateSavings()"></div><div class="prog-wrap"><div class="prog-header"><div class="prog-label">Floor target £50k</div><div class="prog-val" id="savPct">72%</div></div><div class="prog-track"><div class="prog-fill fill-gold" id="savBar" style="width:72%"></div></div></div><div style="font-size:11px;color:var(--ink3);" id="savNote">£14,000 to reach floor</div></div></div>
+<div class="section-title">ISA Progress</div>
+<div class="card"><div class="card-body"><div class="prog-wrap"><div class="prog-header"><div class="prog-label">My ISA (Vanguard)</div><div class="prog-val">£20,207 ✓ MAXED</div></div><div class="prog-track"><div class="prog-fill fill-gold" style="width:100%"></div></div></div><div class="prog-wrap"><div class="prog-header"><div class="prog-label">Shari ISA</div><div class="prog-val">£0 / £20,000</div></div><div class="prog-track"><div class="prog-fill fill-blue" style="width:0%"></div></div></div><div class="prog-wrap"><div class="prog-header"><div class="prog-label">Aliya JISA</div><div class="prog-val">£3,078 / £9,000</div></div><div class="prog-track"><div class="prog-fill fill-green" style="width:34%"></div></div></div><div class="prog-wrap"><div class="prog-header"><div class="prog-label">Amira JISA</div><div class="prog-val">£3,020 / £9,000</div></div><div class="prog-track"><div class="prog-fill fill-green" style="width:34%"></div></div></div><div class="note note-amber" style="margin-top:4px;">⚡ Set up JISA standing orders £375/mo each before April 5th</div></div></div>
+<div class="section-title">Monthly Bills</div>
+<div class="card"><div class="card-body" id="billsContainer"></div></div>
+</div>
+<div class="screen" id="s-property">
+<div class="screen-title">Property</div>
+<div class="g2" style="margin-bottom:14px;"><div class="mini-card"><div class="mini-label">Combined value</div><div class="mini-val" style="color:var(--gold);">£1,000,000</div></div><div class="mini-card"><div class="mini-label">Total equity</div><div class="mini-val" style="color:var(--green);">£819,000</div></div></div>
+<div class="card"><div class="prop-head"><div><div class="prop-name">Tradewinds</div><div class="prop-addr">Wards Wharf Approach, E16 2ER<br>100sqm Thames terrace · Primary home</div></div><div class="badge badge-amber">MORTGAGE</div></div><div class="card-body"><div class="row"><div class="row-label">Value</div><div class="row-val gold">£650,000</div></div><div class="row"><div class="row-label">Mortgage</div><div class="row-val red">-£181,000</div></div><div class="row"><div class="row-label">Equity</div><div class="row-val green">£469,000</div></div><div class="row"><div class="row-label">Payment</div><div class="row-val">£970/mo</div></div><div class="row"><div class="row-label">Renewal</div><div class="row-val amber">May 2027</div></div><div class="row"><div class="row-label">Rental potential</div><div class="row-val green">£3,000+/mo</div></div><div class="row"><div class="row-label">5yr projection</div><div class="row-val gold">£750–900k</div></div><div class="row" style="border-bottom:none;"><div class="row-label">Manager</div><div class="row-val">Urang</div></div><div class="note note-gold" style="margin-top:12px;">Silvertown regeneration (Lendlease, £3.5bn) directly adjacent. Structural tailwind for your terrace.</div></div></div>
+<div class="card"><div class="prop-head"><div><div class="prop-name">Studio Flat</div><div class="prop-addr">E16 · Fully paid off</div></div><div class="badge badge-green">RENTAL</div></div><div class="card-body"><div class="row"><div class="row-label">Value</div><div class="row-val gold">£350,000</div></div><div class="row"><div class="row-label">Mortgage</div><div class="row-val green">£0 — paid ✓</div></div><div class="row"><div class="row-label">Rent</div><div class="row-val green">£1,523/mo</div></div><div class="row"><div class="row-label">Annual income</div><div class="row-val green">£18,276</div></div><div class="row" style="border-bottom:none;"><div class="row-label">Yield</div><div class="row-val">5.2%</div></div></div></div>
+<div class="card"><div class="card-body"><div class="card-label">If letting both — France scenario</div><div class="row"><div class="row-label">Gross /mo</div><div class="row-val">£4,523</div></div><div class="row"><div class="row-label">Net after costs+tax</div><div class="row-val gold">~€2,900</div></div><div class="row" style="border-bottom:none;"><div class="row-label">French rent covered</div><div class="row-val green">~60–65%</div></div></div></div>
+</div>
+<div class="screen" id="s-wealth">
+<div class="screen-title">Wealth</div>
+<div class="section-title">Pension</div>
+<div class="card"><div class="card-body"><div class="card-label">Salesforce Pension</div><div class="card-big gold" style="margin:6px 0;">£136,381</div><div class="card-sub">Shari (primary) · Aliya & Amira (secondary) ✓</div></div></div>
+<div class="section-title">RSU Vests · 48hr Rule — Sell Every Time</div>
+<div class="card"><div class="card-body"><div class="row"><div><div class="row-label">Mar 26 2026 — vested today</div><div class="row-sub">$9k USD</div></div><div style="text-align:right;"><div class="row-val green">£7,100</div><div style="margin-top:4px;"><span class="badge badge-green" style="font-size:8px;">SOLD ✓</span></div></div></div><div class="row"><div><div class="row-label">Jun 2026 — next vest</div></div><div><span class="badge badge-amber">UPCOMING</span></div></div><div class="note note-red" style="margin-top:8px;">Sell every vest within 48hrs. No exceptions.</div></div></div>
+<div class="section-title">Watch Collection — £50,000</div>
+<div class="card"><div class="card-body"><div class="watch-item"><div class="watch-circle">⌚</div><div><div class="watch-brand">Vacheron Constantin</div><div class="watch-name">Overseas 4520V · Blue Dial</div></div><div class="watch-price">£25,000</div></div><div class="watch-item"><div class="watch-circle">⌚</div><div><div class="watch-brand">Rolex</div><div class="watch-name">GMT-Master II Batman</div></div><div class="watch-price">£14,500</div></div><div class="watch-item" style="background:var(--amber-dim);margin:-18px;margin-top:12px;padding:14px 18px;border-top:0.5px solid rgba(245,185,66,.2);"><div class="watch-circle">⌚</div><div><div class="watch-brand">Rolex · Pending Swap</div><div class="watch-name">Submariner Date 41mm</div><div class="watch-note">→ DJ 41 Jubilee two-tone champagne · After Apr 14</div></div><div class="watch-price" style="color:var(--amber);">£10,500</div></div></div></div>
+<div class="section-title">Watches & Wonders 2026</div>
+<div class="card"><div class="card-body"><div class="row"><div class="row-label">Announcement</div><div class="row-val gold">April 14, 2026</div></div><div class="row"><div class="row-label">Sub 41 value</div><div class="row-val">£10,200–10,800</div></div><div class="row" style="border-bottom:none;"><div class="row-label">Strategy</div><div class="row-val green">Direct swap post Apr 14</div></div></div></div>
+</div>
+<div class="screen" id="s-family">
+<div class="screen-title">Family</div>
+<div class="girl-grid"><div class="girl-card"><div class="girl-name-big">Aliya</div><div class="row" style="padding:6px 0;"><div class="row-label">Born</div><div class="row-val" style="font-size:11px;">14 Feb 2024</div></div><div class="row" style="padding:6px 0;"><div class="row-label">Age</div><div class="row-val">2 yrs</div></div><div class="row" style="padding:6px 0;border-bottom:none;"><div class="row-label">JISA</div><div class="row-val green">£3,078</div></div></div><div class="girl-card"><div class="girl-name-big">Amira</div><div class="row" style="padding:6px 0;"><div class="row-label">Born</div><div class="row-val" style="font-size:11px;">14 Feb 2024</div></div><div class="row" style="padding:6px 0;"><div class="row-label">Age</div><div class="row-val">2 yrs</div></div><div class="row" style="padding:6px 0;border-bottom:none;"><div class="row-label">JISA</div><div class="row-val green">£3,020</div></div></div></div>
+<div class="card"><div class="card-body"><div class="card-label">Shari</div><div class="row"><div class="row-label">Age</div><div class="row-val">32 · German</div></div><div class="row"><div class="row-label">Training route</div><div class="row-val amber">To confirm 2026</div></div><div class="row" style="border-bottom:none;"><div class="row-label">ISA 2025/26</div><div class="row-val amber">Not yet funded</div></div></div></div>
+<div class="section-title">Goals & Actions</div>
+<div class="card"><div class="card-body" id="goalsList"></div></div>
+<div class="section-title">Timeline</div>
+<div class="card"><div class="card-body"><div class="timeline-item"><div class="tl-dot done">✓</div><div class="tl-content"><div class="tl-title">Pension nomination complete</div><div class="tl-date">Done · Mar 2026</div></div></div><div class="timeline-item"><div class="tl-dot done">✓</div><div class="tl-content"><div class="tl-title">ISA maxed — £20k Vanguard</div><div class="tl-date">Done · Mar 2026</div></div></div><div class="timeline-item"><div class="tl-dot urgent">!</div><div class="tl-content"><div class="tl-title">Mirror wills — book solicitor</div><div class="tl-date">URGENT</div></div></div><div class="timeline-item"><div class="tl-dot urgent">!</div><div class="tl-content"><div class="tl-title">JISAs — £375/mo standing orders each</div><div class="tl-date">Before April 5th</div></div></div><div class="timeline-item"><div class="tl-dot">→</div><div class="tl-content"><div class="tl-title">Mortgage renewal — Tradewinds</div><div class="tl-date">May 2027</div></div></div><div class="timeline-item"><div class="tl-dot">→</div><div class="tl-content"><div class="tl-title">Girls start school / possible move</div><div class="tl-date">Sep 2027–2028</div></div></div></div></div>
+<div class="section-title">Long-term Vision</div>
+<div class="card"><div class="card-body" style="font-size:13px;color:var(--ink2);line-height:1.8;"><p>Direction: San Sebastián or Biarritz/Anglet. Not immediate.</p><p style="margin-top:8px;color:var(--ink3);">Parents to Anglet. Girls bilingual. Shari online practice. London funds the European life.</p></div></div>
+</div>
+<nav class="nav"><button class="nav-item active" onclick="nav('overview',this)"><div class="nav-dot"></div><div class="nav-icon">◈</div><div class="nav-label">Home</div></button><button class="nav-item" onclick="nav('money',this)"><div class="nav-dot"></div><div class="nav-icon">⟁</div><div class="nav-label">Money</div></button><button class="nav-item" onclick="nav('property',this)"><div class="nav-dot"></div><div class="nav-icon">⬡</div><div class="nav-label">Property</div></button><button class="nav-item" onclick="nav('wealth',this)"><div class="nav-dot"></div><div class="nav-icon">◇</div><div class="nav-label">Wealth</div></button><button class="nav-item" onclick="nav('family',this)"><div class="nav-dot"></div><div class="nav-icon">❋</div><div class="nav-label">Family</div></button></nav>
+<script>
+const BILLS=[{name:'Mortgage — Tradewinds',amt:970,cat:'property'},{name:'Nursery (Aliya & Amira)',amt:2500,cat:'family'},{name:'EDF — Energy',amt:256,cat:'essential'},{name:'Service Charge — Studio',amt:500,cat:'property'},{name:'Cleaner',amt:160,cat:'lifestyle'},{name:'Car Insurance — Aviva',amt:175,cat:'essential'},{name:'Home Insurance',amt:79,cat:'essential'},{name:'Maeving Insurance',amt:95,cat:'essential'},{name:'Fuel',amt:110,cat:'essential'},{name:'Internet',amt:59,cat:'essential'},{name:'Phone',amt:58,cat:'essential'},{name:'NOW TV',amt:35,cat:'lifestyle'},{name:'YouTube Family',amt:25,cat:'lifestyle'},{name:'ChatGPT',amt:20,cat:'lifestyle'},{name:'Netflix',amt:18,cat:'lifestyle'},{name:'Council Tax (PAID)',amt:0,cat:'essential'}];
+const GOALS=[{id:'g1',text:'Mirror wills — book solicitor this week',due:'URGENT — girls are 2',urgent:true},{id:'g2',text:'JISAs — £375/mo standing orders each',due:'Before April 5th',urgent:true},{id:'g3',text:'Cross-border tax advisor — 1 session',due:'Book Q2 2026',urgent:false},{id:'g4',text:'Rolex Sub → Datejust 41 swap',due:'After April 14th',urgent:false},{id:'g5',text:'Salesforce comp call with manager',due:'Mar 31 – Apr 10',urgent:false}];
+const MONTHLY_IN=10023;
+let savings=36000,goalDone={};
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('topDate').textContent=new Date().toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+  load();renderBills();renderGoals();calcCashflow();calcSavings();
+});
+function nav(id,btn){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));document.getElementById('s-'+id).classList.add('active');btn.classList.add('active');window.scrollTo(0,0);}
+function renderBills(){let html='',total=0;BILLS.forEach(b=>{total+=b.amt;html+=`<div class="row"><div><div class="row-label">${b.name}</div><div class="row-sub">${b.cat}</div></div><div class="row-val ${b.amt===0?'green':''}">${b.amt===0?'PAID ✓':'£'+b.amt.toLocaleString()}</div></div>`;});html+=`<div style="display:flex;justify-content:space-between;padding-top:14px;margin-top:4px;border-top:0.5px solid var(--line2);"><div style="font-size:13px;font-weight:500;">Total</div><div style="font-family:var(--mono);font-size:14px;color:var(--red);">£${total.toLocaleString()}</div></div>`;document.getElementById('billsContainer').innerHTML=html;}
+function calcCashflow(){const out=BILLS.reduce((s,b)=>s+b.amt,0),net=MONTHLY_IN-out,pct=Math.min(100,Math.round(net/MONTHLY_IN*100));document.getElementById('cf-out').textContent='£'+out.toLocaleString();document.getElementById('cf-net').textContent=(net>=0?'+':'')+'£'+net.toLocaleString();document.getElementById('cf-bar').style.width=pct+'%';document.getElementById('ov-surplus').textContent=(net>=0?'+':'')+'£'+net.toLocaleString();}
+function updateSavings(){savings=parseInt(document.getElementById('savingsInput').value)||0;calcSavings();save();}
+function calcSavings(){const floor=50000,pct=Math.min(100,Math.round(savings/floor*100)),gap=Math.max(0,floor-savings);document.getElementById('ov-savings').textContent=savings.toLocaleString();document.getElementById('savPct').textContent=pct+'%';document.getElementById('savBar').style.width=pct+'%';document.getElementById('savNote').textContent=gap>0?'£'+gap.toLocaleString()+' to reach £50k floor':'Floor reached ✓';document.getElementById('nwDisplay').textContent='£'+(savings+136381+20207+819000+50000+40000).toLocaleString();}
+function renderGoals(){let full='';GOALS.forEach(g=>{const done=goalDone[g.id];full+=`<div class="goal-item"><div class="goal-tick ${done?'done':g.urgent?'urgent':''}" id="t_${g.id}" onclick="toggleGoal('${g.id}')">${done?'✓':g.urgent?'!':''}</div><div class="goal-text-wrap"><div class="goal-text ${done?'done':''}">${g.text}</div><div class="goal-due ${g.urgent&&!done?'urgent':''}">${g.due}</div></div></div>`;});const gl=document.getElementById('goalsList');if(gl)gl.innerHTML=full;let urg='';GOALS.filter(g=>g.urgent&&!goalDone[g.id]).forEach(g=>{urg+=`<div class="goal-item"><div class="goal-tick urgent" onclick="toggleGoal('${g.id}')">!</div><div class="goal-text-wrap"><div class="goal-text">${g.text}</div><div class="goal-due urgent">${g.due}</div></div></div>`;});if(!urg)urg='<div style="font-size:13px;color:var(--green);text-align:center;padding:8px 0;">All urgent items complete ✓</div>';const ul=document.getElementById('urgentList');if(ul)ul.innerHTML=urg;}
+function toggleGoal(id){goalDone[id]=!goalDone[id];renderGoals();save();showSaved();}
+function save(){try{localStorage.setItem('ms_goals',JSON.stringify(goalDone));localStorage.setItem('ms_savings',savings.toString());}catch(e){}}
+function load(){try{const g=localStorage.getItem('ms_goals');if(g)goalDone=JSON.parse(g);const s=localStorage.getItem('ms_savings');if(s)savings=parseInt(s)||36000;}catch(e){}}
+function showSaved(){const el=document.getElementById('savedPill');el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2000);}
+async function runBrief(){const btn=document.getElementById('briefBtn'),spin=document.getElementById('briefSpin'),txt=document.getElementById('briefTxt'),out=document.getElementById('briefOut');btn.disabled=true;spin.classList.add('on');txt.textContent='Generating...';out.classList.add('on');out.innerHTML='<div style="color:var(--ink3);font-style:italic;">Thinking...</div>';const today=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});const prompt=`You are Mehdi Said's personal advisor (34, RVP EMEA Agentforce, Salesforce month 2). Today: ${today}. Savings: £${savings.toLocaleString()}. Net worth ~£1.1M. Exceptional FY27 rating. RSU sold today. Wills URGENT. JISAs due April 5th. Write sharp morning brief max 200 words with sections **TODAY** **MONEY** **THIS WEEK** **THOUGHT**`;try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,messages:[{role:'user',content:prompt}]})});const data=await res.json();if(data.error)throw new Error(data.error.message);const raw=data.content.filter(b=>b.type==='text').map(b=>b.text).join('
+').trim();let html='';raw.split('
+').forEach(line=>{const l=line.trim();if(!l)return;if(l.startsWith('**')&&l.endsWith('**')){html+=`<div class="ai-section-head">${l.replace(/**/g,'')}</div>`;}else if(l.startsWith('- ')){html+=`<div class="ai-bullet">${l.slice(2)}</div>`;}else{html+=`<p style="margin-bottom:6px;">${l}</p>`;}});out.innerHTML=html;}catch(err){out.innerHTML=`<p style="color:var(--red);">Error: ${err.message}</p>`;}btn.disabled=false;spin.classList.remove('on');txt.textContent='↺ Refresh Brief';}
+if('serviceWorker'in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+</script>
+</body>
+</html>
