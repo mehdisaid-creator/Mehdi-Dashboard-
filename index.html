@@ -374,11 +374,9 @@ async function doBrief() {
     });
     var data = await res.json();
     if (data.error) throw new Error(data.error.message);
-    var raw = data.content.filter(function(b) { return b.type === 'text'; }).map(function(b) { return b.text; }).join('
-').trim();
+    var raw = data.content.filter(function(b) { return b.type === 'text'; }).map(function(b) { return b.text; }).join(String.fromCharCode(10)).trim();
     out.innerHTML = '';
-    var lines = raw.split('
-');
+    var lines = raw.split(String.fromCharCode(10));
     var i, l, d;
     for (i = 0; i < lines.length; i++) {
       l = lines[i].trim();
