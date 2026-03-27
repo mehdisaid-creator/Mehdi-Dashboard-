@@ -308,9 +308,9 @@ function updSav() {
   document.getElementById('OS').textContent = SAV.toLocaleString();
   document.getElementById('SP').textContent = pct + '%';
   document.getElementById('SB').style.width = pct + '%';
-  document.getElementById('SN').textContent = gap > 0 ? '&#163;' + gap.toLocaleString() + ' to reach &#163;50k floor' : 'Floor reached!';
-  document.getElementById('NW').textContent = '&#163;' + (SAV + 136381 + 20207 + 819000 + 50000 + 40000).toLocaleString();
-  document.getElementById('OSP').textContent = '+&#163;' + (10023 - 5060).toLocaleString();
+  document.getElementById('SN').textContent = gap > 0 ? '£' + gap.toLocaleString() + ' to reach £50k floor' : 'Floor reached!';
+  document.getElementById('NW').textContent = '£' + (SAV + 136381 + 20207 + 819000 + 50000 + 40000).toLocaleString();
+  document.getElementById('OSP').textContent = '+£' + (10023 - 5060).toLocaleString();
 }
 
 function tog(n) {
@@ -330,11 +330,11 @@ function applyGoals() {
     var txb = document.getElementById('tx' + i + 'b');
     if (t) {
       t.className = dn ? 'gt dn' : (i <= 2 ? 'gt ug' : 'gt');
-      t.textContent = dn ? '&#10003;' : (i <= 2 ? '!' : '');
+      t.textContent = dn ? '✓' : (i <= 2 ? '!' : '');
     }
     if (tb) {
       tb.className = dn ? 'gt dn' : (i <= 2 ? 'gt ug' : 'gt');
-      tb.textContent = dn ? '&#10003;' : (i <= 2 ? '!' : '');
+      tb.textContent = dn ? '✓' : (i <= 2 ? '!' : '');
     }
     if (tx) tx.className = dn ? 'gtx dn' : 'gtx';
     if (txb) txb.className = dn ? 'gtx dn' : 'gtx';
