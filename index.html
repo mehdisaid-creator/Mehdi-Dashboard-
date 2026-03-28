@@ -197,7 +197,12 @@ input.fi-lg{font-size:24px;width:150px}
 <div class="pw" style="margin-top:12px"><div class="pt"><div class="pf fg" id="sav-bar" style="width:0%"></div></div></div>
 <div class="rw" style="border-bottom:none"><div><div class="rl">Floor reached</div><div class="rs" id="sav-note">...</div></div><div class="floor-date" id="sav-date">...</div></div>
 </div></div>
-<div class="sect">Bills &mdash; toggle off when they end</div>
+<div class="sect" style="display:flex;align-items:center;justify-content:space-between"><span>Bills &mdash; toggle off when they end</span><button onclick="showAddBill()" style="background:none;border:.5px solid var(--l2);border-radius:6px;color:var(--i3);font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;cursor:pointer">+ Add</button></div>
+  <div id="add-bill-form" style="display:none;background:var(--s2);border:.5px solid var(--l2);border-radius:12px;padding:14px;margin-bottom:12px">
+    <div style="font-size:10px;color:var(--i3);margin-bottom:10px;font-style:italic">Add a new monthly expense</div>
+    <div style="display:flex;gap:8px;margin-bottom:10px"><input id="new-bill-name" type="text" placeholder="Name (e.g. Spotify)" style="flex:1;background:transparent;border:none;border-bottom:1.5px solid rgba(255,255,255,.25);color:var(--i1);font-size:13px;padding:4px 0;outline:none;caret-color:var(--gold)"><div style="display:flex;align-items:baseline;gap:3px"><span style="color:var(--i3);font-family:monospace;font-size:13px">£</span><input id="new-bill-amt" type="number" placeholder="0" style="width:70px;background:transparent;border:none;border-bottom:1.5px solid rgba(255,255,255,.25);color:var(--i1);font-family:monospace;font-size:13px;text-align:right;padding:4px 0;outline:none;caret-color:var(--gold)"></div></div>
+    <div style="display:flex;gap:8px"><button onclick="addBill()" style="flex:1;padding:9px;background:rgba(82,214,138,.12);border:.5px solid rgba(82,214,138,.35);border-radius:8px;color:var(--gr);font-size:12px;font-weight:500;cursor:pointer">Add expense</button><button onclick="hideAddBill()" style="padding:9px 14px;background:transparent;border:.5px solid var(--l2);border-radius:8px;color:var(--i3);font-size:12px;cursor:pointer">Cancel</button></div>
+  </div>
 <div class="card"><div class="cb" id="bills-body"></div></div>
 <div class="sect">Scenarios</div>
 <div class="card"><div class="cb">
@@ -410,6 +415,9 @@ out.innerHTML='';
 raw.split('\n').forEach(function(l){l=l.trim();if(!l)return;var d=document.createElement('div');if(l.charAt(0)==='*'&&l.charAt(1)==='*'){d.className='ai-head';d.textContent=l.replace(/\*\*/g,'');}else if(l.charAt(0)==='-'&&l.charAt(1)===' '){d.className='ai-bul';d.textContent=l.slice(2);}else{d.style.marginBottom='5px';d.textContent=l;}out.appendChild(d);});
 }catch(err){out.textContent='Error: '+err.message;}
 btn.disabled=false;sp.className='ai-spin';tx.textContent='\u21ba Refresh Brief';}
+function showAddBill(){var f=q('add-bill-form');f.style.display='block';var ni=q('new-bill-name');if(ni)ni.focus();}
+function hideAddBill(){q('add-bill-form').style.display='none';q('new-bill-name').value='';q('new-bill-amt').value='';}
+function addBill(){var name=(q('new-bill-name').value||'').trim();var amt=parseFloat(q('new-bill-amt').value)||0;if(!name){q('new-bill-name').style.borderColor='var(--rd)';return;}var id='custom_'+Date.now();BILLS.push({id:id,n:name,c:'custom',v:amt,on:true});hideAddBill();renderBills();calc();}
 var saveTimer;
 function save(){clearTimeout(saveTimer);saveTimer=setTimeout(function(){try{var st={salary:n('salary'),rental:n('rental'),savings:n('savings'),savtgt:n('savtgt'),p1v:n('p1v'),p1m:n('p1m'),p1pay:n('p1pay'),p2v:n('p2v'),p2r:n('p2r'),wpen:n('w-pen'),wisa:n('w-isa'),wwat:n('w-wat'),wcar:n('w-car'),wrsu:n('w-rsu'),bills:BILLS.map(function(b){return {id:b.id,v:b.v,on:b.on};}),goals:GOALS.map(function(g){return {id:g.id,dn:g.dn};}),history:HISTORY};localStorage.setItem('mehdi_v5',JSON.stringify(st));}catch(e){}var sv=q('SV');sv.className='sv on';setTimeout(function(){sv.className='sv';},2000);},500);}
 function load(){try{var raw=localStorage.getItem('mehdi_v5');if(!raw)return;var st=JSON.parse(raw);var map={salary:'salary',rental:'rental',savings:'savings',savtgt:'savtgt',p1v:'p1v',p1m:'p1m',p1pay:'p1pay',p2v:'p2v',p2r:'p2r',wpen:'w-pen',wisa:'w-isa',wwat:'w-wat',wcar:'w-car',wrsu:'w-rsu'};Object.keys(map).forEach(function(k){if(st[k]!==undefined&&q(map[k]))q(map[k]).value=st[k];});if(st.bills)st.bills.forEach(function(b){var x=BILLS.find(function(y){return y.id===b.id;});if(x){x.v=b.v;x.on=b.on;}});if(st.goals)st.goals.forEach(function(b){var g=GOALS.find(function(y){return y.id===b.id;});if(g)g.dn=b.dn;});if(st.history)HISTORY=st.history;}catch(e){}}
