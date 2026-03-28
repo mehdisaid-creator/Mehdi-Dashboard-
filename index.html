@@ -10,20 +10,21 @@
 <link rel="manifest" href="manifest.json">
 <title>Mehdi Said</title>
 <style>
-:root{--bg:#08090d;--s1:#0d0e13;--s2:#12131a;--s4:#22232e;--gold:#c8a96e;--i1:#eeeae3;--i2:#8a8680;--i3:#3e3d3a;--ln:rgba(255,255,255,.05);--l2:rgba(255,255,255,.09);--gr:#52d68a;--am:#f5b942;--rd:#f07070;--nh:76px}
+:root{--bg:#08090d;--s1:#0d0e13;--s2:#12131a;--s4:#22232e;--gold:#c8a96e;--i1:#eeeae3;--i2:#8a8680;--i3:#3e3d3a;--ln:rgba(255,255,255,.05);--l2:rgba(255,255,255,.09);--gr:#52d68a;--am:#f5b942;--rd:#f07070;--bl:#6baed6;--nh:76px}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--i1);font-family:system-ui,sans-serif;font-size:15px;line-height:1.5;min-height:100vh;padding-bottom:calc(var(--nh) + env(safe-area-inset-bottom,0px))}
+body{background:var(--bg);color:var(--i1);font-family:system-ui,sans-serif;font-size:15px;line-height:1.5;min-height:100vh;padding-bottom:calc(var(--nh) + env(safe-area-inset-bottom,0px));-webkit-font-smoothing:antialiased}
 body::before{content:'';position:fixed;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);z-index:1000;pointer-events:none}
 .pg{display:none;padding:0 16px 24px}.pg.on{display:block}
 .tb{padding:52px 16px 12px;display:flex;align-items:flex-end;justify-content:space-between;position:sticky;top:0;background:var(--bg);z-index:10;border-bottom:.5px solid var(--ln);margin-bottom:18px}
 .tb-t{font-family:Georgia,serif;font-size:24px;color:var(--i1)}.tb-t em{color:var(--gold);font-style:italic}
-.tb-d{font-family:monospace;font-size:10px;color:var(--i3)}
-.sv{font-size:9px;color:var(--gr);opacity:0;transition:opacity .3s;font-family:monospace}.sv.on{opacity:1}
+.tb-r{text-align:right}.tb-d{font-family:monospace;font-size:10px;color:var(--i3)}
+.sv{font-size:9px;color:var(--gr);opacity:0;transition:opacity .3s;font-family:monospace;margin-top:2px}.sv.on{opacity:1}
 .nav{position:fixed;bottom:0;left:0;right:0;height:calc(var(--nh) + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);background:var(--s1);border-top:.5px solid var(--l2);display:flex;align-items:center;justify-content:space-around;z-index:100}
 .ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 4px;background:none;border:none;cursor:pointer;color:var(--i3);-webkit-tap-highlight-color:transparent;transition:color .2s}
 .ni.on{color:var(--gold)}.nd{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:0}.ni.on .nd{opacity:1}
 .nii{font-size:20px;line-height:1}.nil{font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 .hero{background:var(--s1);border:.5px solid rgba(200,169,110,.2);border-radius:16px;padding:20px;margin-bottom:12px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(200,169,110,.07) 0%,transparent 70%);pointer-events:none}
 .hl{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
 .hv{font-family:Georgia,serif;font-size:40px;color:var(--i1);line-height:1;margin-bottom:4px}
 .hs{font-size:12px;color:var(--i3)}
@@ -31,6 +32,7 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;height:1px;backgroun
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
 .mc{background:var(--s1);border:.5px solid var(--ln);border-radius:10px;padding:12px}
 .ml{font-size:10px;color:var(--i3);margin-bottom:4px}.mv{font-size:16px;font-weight:500;color:var(--i1)}
+.ms{font-size:10px;color:var(--i3);margin-top:3px}
 .gld{color:var(--gold)}.grn{color:var(--gr)}.red{color:var(--rd)}.amb{color:var(--am)}
 .card{background:var(--s1);border:.5px solid var(--ln);border-radius:16px;margin-bottom:12px;overflow:hidden}
 .ch{padding:12px 16px;border-bottom:.5px solid var(--ln);display:flex;align-items:center;justify-content:space-between}
@@ -53,7 +55,7 @@ input.fi-lg{font-size:24px;width:150px}
 .pl{font-size:12px;color:var(--i2)}.pv{font-size:11px;font-family:monospace;color:var(--i3)}
 .pt{height:4px;background:var(--s4);border-radius:2px;overflow:hidden}
 .pf{height:100%;border-radius:2px;transition:width .4s}
-.fg{background:var(--gold)}.fgr{background:var(--gr)}.fb{background:#6baed6}
+.fg{background:var(--gold)}.fgr{background:var(--gr)}.fb{background:var(--bl)}
 .cf-row{display:flex;justify-content:space-around;align-items:center;padding:12px 0}
 .cf-item{text-align:center;flex:1}
 .cf-lbl{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--i3);margin-bottom:4px}
@@ -66,6 +68,7 @@ input.fi-lg{font-size:24px;width:150px}
 .nv{background:rgba(82,214,138,.06);border:.5px solid rgba(82,214,138,.2);color:var(--gr)}
 .nr{background:rgba(240,112,112,.06);border:.5px solid rgba(240,112,112,.2);color:var(--rd)}
 .na{background:rgba(245,185,66,.06);border:.5px solid rgba(245,185,66,.2);color:var(--am)}
+.nb{background:rgba(107,174,214,.06);border:.5px solid rgba(107,174,214,.2);color:var(--bl)}
 .bdg{font-size:9px;font-weight:600;padding:2px 8px;border-radius:20px;border:.5px solid;white-space:nowrap}
 .bg{color:var(--gold);border-color:rgba(200,169,110,.5);background:rgba(200,169,110,.1)}
 .bgg{color:var(--gr);border-color:rgba(82,214,138,.4);background:rgba(82,214,138,.08)}
@@ -103,398 +106,318 @@ input.fi-lg{font-size:24px;width:150px}
 .gc{background:var(--s1);border:.5px solid var(--ln);border-radius:16px;padding:14px}
 .gn{font-family:Georgia,serif;font-size:18px;font-style:italic;color:var(--gold);margin-bottom:10px}
 .hint{font-size:10px;color:var(--i3);text-align:center;padding:6px 0;font-style:italic}
+.ai-btn{width:100%;padding:15px;background:rgba(200,169,110,.08);border:.5px solid rgba(200,169,110,.3);border-radius:14px;color:var(--gold);font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px;-webkit-tap-highlight-color:transparent;transition:all .2s}
+.ai-btn:disabled{opacity:.4;pointer-events:none}
+.ai-spin{width:14px;height:14px;border:2px solid rgba(200,169,110,.2);border-top-color:var(--gold);border-radius:50%;animation:sp .7s linear infinite;display:none}
+.ai-spin.on{display:block}
+@keyframes sp{to{transform:rotate(360deg)}}
+.ai-out{background:var(--s1);border:.5px solid var(--l2);border-radius:14px;padding:16px;margin-bottom:12px;display:none;font-size:13px;line-height:1.75;color:var(--i2)}
+.ai-out.on{display:block}
+.ai-head{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin:12px 0 5px}
+.ai-head:first-child{margin-top:0}
+.ai-bul{padding-left:14px;position:relative;margin-bottom:4px}
+.ai-bul::before{content:'\203a';position:absolute;left:0;color:var(--gold)}
+.countdown{display:flex;gap:8px;margin-bottom:12px}
+.cd-item{flex:1;background:var(--s1);border:.5px solid var(--ln);border-radius:10px;padding:12px;text-align:center}
+.cd-n{font-family:Georgia,serif;font-size:28px;color:var(--gold);line-height:1}
+.cd-l{font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--i3);margin-top:3px}
+.floor-date{font-family:Georgia,serif;font-size:22px;color:var(--gold);margin-top:4px}
+.log-btn{width:100%;padding:16px;background:rgba(82,214,138,.08);border:.5px solid rgba(82,214,138,.3);border-radius:14px;color:var(--gr);font-size:15px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px;-webkit-tap-highlight-color:transparent}
+.month-badge{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--i3);background:var(--s2);border:.5px solid var(--ln);border-radius:6px;padding:2px 8px}
+.hist-item{padding:12px 0;border-bottom:.5px solid var(--ln)}
+.hist-item:last-child{border-bottom:none}
+.hist-month{font-size:11px;font-weight:600;color:var(--i3);font-family:monospace;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.hist-row{display:flex;justify-content:space-between;margin-bottom:3px}
+.hist-l{font-size:12px;color:var(--i2)}
+.hist-v{font-size:12px;font-family:monospace;color:var(--i1)}
+.scen-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:.5px solid var(--ln)}
+.scen-row:last-child{border-bottom:none}
+.scen-impact{font-size:13px;color:var(--i2);padding:10px 0;border-top:.5px solid var(--ln);margin-top:8px}
+.impact-row{display:flex;justify-content:space-between;margin-bottom:4px}
+.impact-val{font-family:monospace;font-size:13px}
 </style>
 </head>
 <body>
-
-<div class="tb">
-  <div class="tb-t">Mehdi <em>Said</em></div>
-  <div>
-    <div class="tb-d" id="D"></div>
-    <div class="sv" id="SV">Saved</div>
-  </div>
-</div>
-
+<div class="tb"><div class="tb-t">Mehdi <em>Said</em></div><div class="tb-r"><div class="tb-d" id="D"></div><div class="sv" id="SV">Saved</div></div></div>
 <div class="pg on" id="p0">
-  <div class="hero">
-    <div class="hl">Total Net Worth</div>
-    <div class="hv" id="nw">...</div>
-    <div class="hs">Updates live as you edit any number below</div>
-  </div>
-  <div class="g3">
-    <div class="mc"><div class="ml">Savings</div><div class="mv gld" id="h-sav">...</div></div>
-    <div class="mc"><div class="ml">Equity</div><div class="mv" id="h-eq">...</div></div>
-    <div class="mc"><div class="ml">Pension</div><div class="mv" id="h-pen">...</div></div>
-  </div>
-  <div class="g2">
-    <div class="mc"><div class="ml">Monthly in</div><div class="mv grn" id="h-in">...</div></div>
-    <div class="mc"><div class="ml">Surplus /mo</div><div class="mv" id="h-sur">...</div></div>
-  </div>
-  <div class="card" style="border-color:rgba(200,169,110,.3)">
-    <div class="cb">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <div>
-          <div class="ct" style="margin-bottom:4px">FY27 Rating</div>
-          <div style="font-family:Georgia,serif;font-size:22px;color:var(--gold)">Exceptional</div>
-          <div style="font-size:11px;color:var(--i3);margin-top:3px">Comp: Mar 31 &ndash; Apr 10</div>
-        </div>
-        <span class="bdg bg">TOP BAND</span>
-      </div>
-      <div class="note ng" style="margin-top:10px">115&ndash;140%+ bonus &middot; 20&ndash;40% larger RSU grant. Wait for manager call.</div>
-    </div>
-  </div>
-  <div class="sect">Urgent actions</div>
-  <div class="card"><div class="cb" id="urgent"></div></div>
+<div class="hero"><div class="hl">Total Net Worth</div><div class="hv" id="nw">...</div><div class="hs" id="nw-sub">Updates live as you edit</div></div>
+<div class="g3"><div class="mc"><div class="ml">Savings</div><div class="mv gld" id="h-sav">...</div><div class="ms" id="h-sav-sub">...</div></div><div class="mc"><div class="ml">Equity</div><div class="mv" id="h-eq">...</div><div class="ms">2 properties</div></div><div class="mc"><div class="ml">Pension</div><div class="mv" id="h-pen">...</div><div class="ms">Nominated &#10003;</div></div></div>
+<div class="g2"><div class="mc"><div class="ml">Monthly surplus</div><div class="mv" id="h-sur">...</div><div class="ms">typical month</div></div><div class="mc"><div class="ml">Floor reached</div><div class="mv gld" id="h-floor">...</div><div class="ms" id="h-floor-sub">at current rate</div></div></div>
+<div class="sect">Watches &amp; Wonders countdown</div>
+<div class="countdown" id="ww-cd"></div>
+<div class="card" style="border-color:rgba(200,169,110,.3)"><div class="cb"><div style="display:flex;align-items:center;justify-content:space-between"><div><div class="ct" style="margin-bottom:4px">FY27 Rating</div><div style="font-family:Georgia,serif;font-size:22px;color:var(--gold)">Exceptional</div><div style="font-size:11px;color:var(--i3);margin-top:3px">Comp: Mar 31 &ndash; Apr 10</div></div><span class="bdg bg">TOP BAND</span></div><div class="note ng" style="margin-top:10px">115&ndash;140%+ bonus &middot; 20&ndash;40% larger RSU grant. Wait for manager call.</div></div></div>
+<button class="ai-btn" id="brief-btn" onclick="runBrief()"><div class="ai-spin" id="brief-spin"></div><span id="brief-txt">&#10022; Generate Morning Brief</span></button>
+<div class="ai-out" id="brief-out"></div>
+<div class="sect">Urgent actions</div>
+<div class="card"><div class="cb" id="urgent"></div></div>
 </div>
 
 <div class="pg" id="p1">
-  <div class="sect">Cashflow</div>
-  <div class="card"><div class="cb">
-    <div class="cf-row">
-      <div class="cf-item"><div class="cf-lbl">In</div><div class="cf-val grn" id="cf-in">...</div></div>
-      <div class="cf-div"></div>
-      <div class="cf-item"><div class="cf-lbl">Bills</div><div class="cf-val red" id="cf-out">...</div></div>
-      <div class="cf-div"></div>
-      <div class="cf-item"><div class="cf-lbl">Surplus</div><div class="cf-val gld" id="cf-net">...</div></div>
-    </div>
-    <div class="cfbar"><div class="cfbar-fill" id="cfbar" style="width:0%"></div></div>
-  </div></div>
-
-  <div class="sect">Income</div>
-  <div class="card"><div class="cb">
-    <div class="hint">Tap any number to edit it directly</div>
-    <div class="rw">
-      <div><div class="rl">Net monthly salary</div><div class="rs">after tax and NI</div></div>
-      <div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="salary" value="8500" oninput="calc()"></div>
-    </div>
-    <div class="rw">
-      <div><div class="rl">Studio rental income</div><div class="rs">net monthly</div></div>
-      <div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="rental" value="1523" oninput="calc()"></div>
-    </div>
-    <div class="rw">
-      <div><div class="rl">Bonus / commission</div><div class="rs">this month one-off</div></div>
-      <div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="bonus" value="0" oninput="calc()"></div>
-    </div>
-    <div class="rw" style="border-bottom:none;margin-top:4px;padding-top:12px;border-top:.5px solid var(--l2)">
-      <div class="rl" style="font-weight:500">Total monthly in</div>
-      <span class="rv grn" id="total-in" style="font-weight:500">...</span>
-    </div>
-  </div></div>
-
-  <div class="sect">Bills &mdash; toggle off when they end, tap amount to edit</div>
-  <div class="card"><div class="cb" id="bills-body"></div></div>
-
-  <div class="sect">Savings</div>
-  <div class="card"><div class="cb">
-    <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:14px">
-      <span style="font-size:28px;color:var(--i3);font-family:monospace">&pound;</span>
-      <input class="fi fi-lg" type="number" id="savings" value="36000" oninput="calc()">
-      <span style="font-size:11px;color:var(--i3)">current savings</span>
-    </div>
-    <div class="rw">
-      <div class="rl">Floor target</div>
-      <div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="savtgt" value="50000" oninput="calc()"></div>
-    </div>
-    <div class="pw" style="margin-top:12px">
-      <div class="pt"><div class="pf fg" id="sav-bar" style="width:0%"></div></div>
-    </div>
-    <div id="sav-note" style="font-size:12px;color:var(--i3);margin-top:4px"></div>
-  </div></div>
-
-  <div class="sect">ISA Progress 2025/26</div>
-  <div class="card"><div class="cb">
-    <div class="pw"><div class="ph"><span class="pl">My ISA (Vanguard)</span><span class="pv">&pound;20,207 &mdash; MAXED</span></div><div class="pt"><div class="pf fg" style="width:100%"></div></div></div>
-    <div class="pw"><div class="ph"><span class="pl">Aliya JISA</span><span class="pv">&pound;3,078 / &pound;9,000</span></div><div class="pt"><div class="pf fgr" style="width:34%"></div></div></div>
-    <div class="pw"><div class="ph"><span class="pl">Amira JISA</span><span class="pv">&pound;3,020 / &pound;9,000</span></div><div class="pt"><div class="pf fgr" style="width:34%"></div></div></div>
-    <div class="note na">Set up &pound;375/mo standing orders before April 5th</div>
-  </div></div>
+<div class="sect">Log this month</div>
+<div class="card"><div class="cb">
+<div class="hint">What actually landed in your account this month</div>
+<div class="rw"><div><div class="rl">Month</div></div><span class="month-badge" id="log-month-label">...</span></div>
+<div class="rw"><div><div class="rl">Salary received</div><div class="rs">net, after tax</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="log-sal" value="8500" oninput="updateLogTotal()"></div></div>
+<div class="rw"><div><div class="rl">RSU vest received</div><div class="rs">if applicable this month</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="log-rsu" value="0" oninput="updateLogTotal()"></div></div>
+<div class="rw"><div><div class="rl">Bonus / commission</div><div class="rs">any extra one-off</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="log-bon" value="0" oninput="updateLogTotal()"></div></div>
+<div class="rw"><div><div class="rl">Rental received</div><div class="rs">studio flat</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="log-rent" value="1523" oninput="updateLogTotal()"></div></div>
+<div class="rw" style="border-bottom:none;padding-top:12px;margin-top:4px;border-top:.5px solid var(--l2)"><div class="rl" style="font-weight:500">Total in this month</div><span class="rv grn" id="log-total" style="font-weight:500">...</span></div>
+</div></div>
+<div class="sect">Confirm savings balance</div>
+<div class="card"><div class="cb">
+<div class="hint">Check your bank and enter the actual number</div>
+<div style="display:flex;align-items:baseline;gap:8px;margin-bottom:14px"><span style="font-size:28px;color:var(--i3);font-family:monospace">&pound;</span><input class="fi fi-lg" type="number" id="log-sav" value="44000" oninput="updateLogTotal()"><span style="font-size:11px;color:var(--i3)">actual balance</span></div>
+<div class="rw" style="border-bottom:none"><div><div class="rl">Change vs last month</div></div><span class="rv" id="log-sav-diff">...</span></div>
+</div></div>
+<div class="sect">Mortgage update</div>
+<div class="card"><div class="cb">
+<div class="hint">Reduce by ~&pound;350 each month as you pay it down</div>
+<div class="rw"><div><div class="rl">Outstanding balance</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="log-mort" value="181000" oninput="updateLogTotal()"></div></div>
+<div class="rw" style="border-bottom:none"><div><div class="rl">Equity (auto)</div></div><span class="rv grn" id="log-eq">...</span></div>
+</div></div>
+<button class="log-btn" onclick="commitLog()">&#10003; Confirm &amp; Save This Month</button>
+<div class="sect">History</div>
+<div class="card"><div class="cb" id="hist-body"><div class="hint">No months logged yet.</div></div></div>
 </div>
 
 <div class="pg" id="p2">
-  <div class="g2" style="margin-bottom:12px">
-    <div class="mc"><div class="ml">Combined value</div><div class="mv gld" id="p-val">...</div></div>
-    <div class="mc"><div class="ml">Total equity</div><div class="mv grn" id="p-eq">...</div></div>
-  </div>
-  <div class="sect">Tradewinds &mdash; primary home</div>
-  <div class="card">
-    <div class="ch"><div><div style="font-family:Georgia,serif;font-size:15px">Tradewinds &middot; E16 2ER</div><div style="font-size:11px;color:var(--i3);margin-top:2px">100sqm Thames terrace</div></div><span class="bdg ba">MORTGAGE</span></div>
-    <div class="cb">
-      <div class="hint">Edit value as market moves, mortgage balance monthly as you pay it down</div>
-      <div class="rw"><div><div class="rl">Market value</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="p1v" value="650000" oninput="calc()"></div></div>
-      <div class="rw"><div><div class="rl">Mortgage outstanding</div><div class="rs">reduces ~&pound;350/mo</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="p1m" value="181000" oninput="calc()"></div></div>
-      <div class="rw"><div><div class="rl">Equity (auto)</div></div><span class="rv grn" id="p1eq">...</span></div>
-      <div class="rw"><div><div class="rl">Monthly payment</div><div class="rs">syncs to bills</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="p1pay" value="970" oninput="syncMortgage()"></div></div>
-      <div class="rw"><div class="rl">Rental potential</div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="p1rent" value="3000" oninput="calc()"></div></div>
-      <div class="rw" style="border-bottom:none"><div class="rl">Renewal</div><span class="rv amb">May 2027</span></div>
-      <div class="note ng" style="margin-top:8px">Silvertown (Lendlease &pound;3.5bn) directly adjacent. Structural tailwind.</div>
-    </div>
-  </div>
-  <div class="sect">Studio flat &mdash; rental</div>
-  <div class="card">
-    <div class="ch"><div><div style="font-family:Georgia,serif;font-size:15px">Studio &middot; E16</div><div style="font-size:11px;color:var(--i3);margin-top:2px">Fully paid off</div></div><span class="bdg bgg">RENTAL</span></div>
-    <div class="cb">
-      <div class="rw"><div class="rl">Market value</div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="p2v" value="350000" oninput="calc()"></div></div>
-      <div class="rw"><div class="rl">Mortgage</div><span class="rv grn">&pound;0 &mdash; paid</span></div>
-      <div class="rw"><div><div class="rl">Monthly rent</div><div class="rs">syncs to income</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="p2r" value="1523" oninput="syncRental()"></div></div>
-      <div class="rw"><div class="rl">Annual income</div><span class="rv grn" id="p2ann">...</span></div>
-      <div class="rw" style="border-bottom:none"><div class="rl">Gross yield</div><span class="rv" id="p2yld">...</span></div>
-    </div>
-  </div>
-  <div class="sect">France scenario</div>
-  <div class="card"><div class="cb">
-    <div class="rw"><div class="rl">Gross rental /mo (both)</div><span class="rv" id="fr-g">...</span></div>
-    <div class="rw"><div class="rl">Net after costs + tax</div><span class="rv gld" id="fr-n">...</span></div>
-    <div class="rw" style="border-bottom:none"><div class="rl">French rent covered</div><span class="rv grn">~60&ndash;65%</span></div>
-    <div class="note nv" style="margin-top:8px">London funds the European life. Salary entirely free for saving.</div>
-  </div></div>
+<div class="sect">Cashflow (typical month)</div>
+<div class="card"><div class="cb"><div class="cf-row"><div class="cf-item"><div class="cf-lbl">In</div><div class="cf-val grn" id="cf-in">...</div></div><div class="cf-div"></div><div class="cf-item"><div class="cf-lbl">Bills</div><div class="cf-val red" id="cf-out">...</div></div><div class="cf-div"></div><div class="cf-item"><div class="cf-lbl">Surplus</div><div class="cf-val gld" id="cf-net">...</div></div></div><div class="cfbar"><div class="cfbar-fill" id="cfbar" style="width:0%"></div></div></div></div>
+<div class="sect">Baseline income (for projections)</div>
+<div class="card"><div class="cb">
+<div class="hint">Typical month &mdash; used for floor date and trajectory</div>
+<div class="rw"><div><div class="rl">Net monthly salary</div><div class="rs">typical, after tax</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="salary" value="8500" oninput="calc()"></div></div>
+<div class="rw"><div><div class="rl">Rental income</div><div class="rs">studio flat</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="rental" value="1523" oninput="calc()"></div></div>
+<div class="rw" style="border-bottom:none;margin-top:4px;padding-top:12px;border-top:.5px solid var(--l2)"><div class="rl" style="font-weight:500">Typical monthly in</div><span class="rv grn" id="total-in" style="font-weight:500">...</span></div>
+</div></div>
+<div class="sect">Savings</div>
+<div class="card"><div class="cb">
+<div style="display:flex;align-items:baseline;gap:8px;margin-bottom:14px"><span style="font-size:28px;color:var(--i3);font-family:monospace">&pound;</span><input class="fi fi-lg" type="number" id="savings" value="44000" oninput="calc()"></div>
+<div class="rw"><div class="rl">Floor target</div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="savtgt" value="50000" oninput="calc()"></div></div>
+<div class="pw" style="margin-top:12px"><div class="pt"><div class="pf fg" id="sav-bar" style="width:0%"></div></div></div>
+<div class="rw" style="border-bottom:none"><div><div class="rl">Floor reached</div><div class="rs" id="sav-note">...</div></div><div class="floor-date" id="sav-date">...</div></div>
+</div></div>
+<div class="sect">Bills &mdash; toggle off when they end</div>
+<div class="card"><div class="cb" id="bills-body"></div></div>
+<div class="sect">Scenarios</div>
+<div class="card"><div class="cb">
+<div class="hint">Toggle to model future changes</div>
+<div class="scen-row"><div><div class="rl">Nursery ends (Sep 2026)</div><div class="rs">saves &pound;2,500/mo</div></div><div class="tog" id="scen-nursery" onclick="togScen('nursery')"></div></div>
+<div class="scen-row"><div><div class="rl">France relocation</div><div class="rs">both properties let</div></div><div class="tog" id="scen-france" onclick="togScen('france')"></div></div>
+<div class="scen-row" style="border-bottom:none"><div><div class="rl">Comp uplift (Exceptional)</div><div class="rs">+20% salary assumption</div></div><div class="tog" id="scen-promo" onclick="togScen('promo')"></div></div>
+<div class="scen-impact" id="scen-impact" style="display:none"></div>
+</div></div>
+<div class="sect">ISA Progress 2025/26</div>
+<div class="card"><div class="cb">
+<div class="pw"><div class="ph"><span class="pl">My ISA (Vanguard)</span><span class="pv">&pound;20,207 &mdash; MAXED &#10003;</span></div><div class="pt"><div class="pf fg" style="width:100%"></div></div></div>
+<div class="pw"><div class="ph"><span class="pl">Aliya JISA</span><span class="pv">&pound;3,078 / &pound;9,000</span></div><div class="pt"><div class="pf fgr" style="width:34%"></div></div></div>
+<div class="pw"><div class="ph"><span class="pl">Amira JISA</span><span class="pv">&pound;3,020 / &pound;9,000</span></div><div class="pt"><div class="pf fgr" style="width:34%"></div></div></div>
+<div class="note na">&starf; Set up &pound;375/mo standing orders before April 5th</div>
+</div></div>
 </div>
 
 <div class="pg" id="p3">
-  <div class="sect">Net worth &mdash; edit any asset</div>
-  <div class="card"><div class="cb">
-    <div class="hint">All fields editable &mdash; net worth recalculates live</div>
-    <div class="rw"><div><div class="rl">Property equity (auto)</div></div><span class="rv gld" id="w-eq">...</span></div>
-    <div class="rw"><div class="rl">Savings</div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="w-sav" value="36000" oninput="syncSav()"></div></div>
-    <div class="rw"><div><div class="rl">Pension (Salesforce)</div><div class="rs">update quarterly</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="w-pen" value="136381" oninput="calc()"></div></div>
-    <div class="rw"><div class="rl">ISA (Vanguard)</div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="w-isa" value="20207" oninput="calc()"></div></div>
-    <div class="rw"><div class="rl">Watch collection</div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="w-wat" value="50000" oninput="calc()"></div></div>
-    <div class="rw"><div class="rl">Car</div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="w-car" value="40000" oninput="calc()"></div></div>
-    <div class="rw" style="border-bottom:none;margin-top:4px;padding-top:12px;border-top:.5px solid var(--l2)"><div class="rl" style="font-weight:500">Total net worth</div><span class="rv gld" id="w-tot" style="font-weight:500">...</span></div>
-  </div></div>
-  <div class="sect">RSU vests &mdash; 48hr rule</div>
-  <div class="card"><div class="cb">
-    <div class="rw"><div><div class="rl">Mar 26 2026 &mdash; sold</div><div class="rs">$9k USD</div></div><div style="text-align:right"><div class="rv grn">&pound;7,100</div><div style="margin-top:3px"><span class="bdg bgg" style="font-size:9px">SOLD</span></div></div></div>
-    <div class="rw"><div><div class="rl">Jun 2026 next vest est.</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="w-rsu" value="7000" oninput="calc()"></div></div>
-    <div class="rw" style="border-bottom:none"><div class="rl">Rule</div><span class="bdg br">SELL WITHIN 48HRS</span></div>
-    <div class="note nr" style="margin-top:8px">No exceptions. Concentrated in Salesforce via salary, bonus, pension and career.</div>
-  </div></div>
-  <div class="sect">Watches</div>
-  <div class="card"><div class="cb">
-    <div class="wi"><div class="wc">&#8986;</div><div><div class="wb">Vacheron Constantin</div><div class="wn">Overseas 4520V &middot; Blue Dial</div></div><div class="wp">&pound;25,000</div></div>
-    <div class="wi"><div class="wc">&#8986;</div><div><div class="wb">Rolex</div><div class="wn">GMT-Master II Batman</div></div><div class="wp">&pound;14,500</div></div>
-    <div class="wi" style="background:rgba(245,185,66,.05);margin:-14px -16px;margin-top:10px;padding:12px 16px;border-top:.5px solid rgba(245,185,66,.2)">
-      <div class="wc">&#8986;</div><div><div class="wb">Rolex Pending</div><div class="wn">Submariner Date 41mm</div><div class="wo">DJ 41 Jubilee after Apr 14</div></div><div class="wp" style="color:var(--am)">&pound;10,500</div>
-    </div>
-  </div></div>
+<div class="g2" style="margin-bottom:12px"><div class="mc"><div class="ml">Combined value</div><div class="mv gld" id="p-val">...</div></div><div class="mc"><div class="ml">Total equity</div><div class="mv grn" id="p-eq">...</div></div></div>
+<div class="sect">Tradewinds</div>
+<div class="card"><div class="ch"><div><div style="font-family:Georgia,serif;font-size:15px">Tradewinds &middot; E16 2ER</div><div style="font-size:11px;color:var(--i3);margin-top:2px">100sqm Thames terrace</div></div><span class="bdg ba">MORTGAGE</span></div>
+<div class="cb"><div class="hint">Update monthly as market moves and mortgage pays down</div>
+<div class="rw"><div><div class="rl">Market value</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="p1v" value="650000" oninput="calc()"></div></div>
+<div class="rw"><div><div class="rl">Mortgage outstanding</div><div class="rs">syncs with Monthly Log</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="p1m" value="181000" oninput="calc()"></div></div>
+<div class="rw"><div><div class="rl">Equity</div></div><span class="rv grn" id="p1eq">...</span></div>
+<div class="rw"><div><div class="rl">Payment /mo</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="p1pay" value="970" oninput="syncMortgage()"></div></div>
+<div class="rw" style="border-bottom:none"><div class="rl">Renewal</div><span class="rv amb">May 2027</span></div>
+<div class="note ng" style="margin-top:8px">Silvertown (Lendlease &pound;3.5bn) directly adjacent. Structural tailwind.</div>
+</div></div>
+<div class="sect">Studio flat</div>
+<div class="card"><div class="ch"><div><div style="font-family:Georgia,serif;font-size:15px">Studio &middot; E16</div><div style="font-size:11px;color:var(--i3);margin-top:2px">Fully paid off</div></div><span class="bdg bgg">RENTAL</span></div>
+<div class="cb">
+<div class="rw"><div class="rl">Market value</div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="p2v" value="350000" oninput="calc()"></div></div>
+<div class="rw"><div class="rl">Mortgage</div><span class="rv grn">&pound;0 &mdash; paid &#10003;</span></div>
+<div class="rw"><div><div class="rl">Monthly rent</div><div class="rs">syncs to baseline</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="p2r" value="1523" oninput="syncRental()"></div></div>
+<div class="rw"><div class="rl">Annual income</div><span class="rv grn" id="p2ann">...</span></div>
+<div class="rw" style="border-bottom:none"><div class="rl">Gross yield</div><span class="rv" id="p2yld">...</span></div>
+</div></div>
+<div class="sect">France scenario</div>
+<div class="card"><div class="cb">
+<div class="rw"><div class="rl">Gross rental /mo (both)</div><span class="rv" id="fr-g">...</span></div>
+<div class="rw"><div class="rl">Net after costs + tax</div><span class="rv gld" id="fr-n">...</span></div>
+<div class="rw" style="border-bottom:none"><div class="rl">French rent covered</div><span class="rv grn">~60&ndash;65%</span></div>
+<div class="note nv" style="margin-top:8px">London funds the European life.</div>
+</div></div>
 </div>
 
 <div class="pg" id="p4">
-  <div class="gg2">
-    <div class="gc"><div class="gn">Aliya</div><div class="rw" style="padding:6px 0"><div class="rl">Born</div><span class="rv" style="font-size:11px">14 Feb 2024</span></div><div class="rw" style="padding:6px 0;border-bottom:none"><div class="rl">JISA</div><span class="rv grn">&pound;3,078</span></div></div>
-    <div class="gc"><div class="gn">Amira</div><div class="rw" style="padding:6px 0"><div class="rl">Born</div><span class="rv" style="font-size:11px">14 Feb 2024</span></div><div class="rw" style="padding:6px 0;border-bottom:none"><div class="rl">JISA</div><span class="rv grn">&pound;3,020</span></div></div>
-  </div>
-  <div class="card"><div class="cb"><div class="ct" style="margin-bottom:8px">Shari</div><div class="rw"><div class="rl">Age</div><span class="rv">32 &middot; German</span></div><div class="rw"><div class="rl">Training route</div><span class="rv amb">To confirm 2026</span></div><div class="rw" style="border-bottom:none"><div class="rl">ISA 2025/26</div><span class="rv amb">Not yet funded</span></div></div></div>
-  <div class="sect">Goals</div>
-  <div class="card"><div class="cb" id="goals-body"></div></div>
-  <div class="sect">Timeline</div>
-  <div class="card"><div class="cb">
-    <div class="ti"><div class="td dn">&#10003;</div><div class="tc"><div class="tt">Pension nomination complete</div><div class="tdt">Done Mar 2026</div></div></div>
-    <div class="ti"><div class="td dn">&#10003;</div><div class="tc"><div class="tt">ISA maxed &mdash; &pound;20k Vanguard</div><div class="tdt">Done Mar 2026</div></div></div>
-    <div class="ti"><div class="td ug">!</div><div class="tc"><div class="tt">Mirror wills &mdash; book solicitor</div><div class="tdt">URGENT</div></div></div>
-    <div class="ti"><div class="td ug">!</div><div class="tc"><div class="tt">JISAs &mdash; &pound;375/mo standing orders</div><div class="tdt">Before April 5th</div></div></div>
-    <div class="ti"><div class="td">&#8594;</div><div class="tc"><div class="tt">Mortgage renewal &mdash; Tradewinds</div><div class="tdt">May 2027</div></div></div>
-    <div class="ti"><div class="td">&#8594;</div><div class="tc"><div class="tt">Girls start school / possible move</div><div class="tdt">Sep 2027&ndash;2028</div></div></div>
-  </div></div>
+<div class="sect">Net worth</div>
+<div class="card"><div class="cb"><div class="hint">Edit any asset &mdash; total recalculates live</div>
+<div class="rw"><div><div class="rl">Property equity</div></div><span class="rv gld" id="w-eq">...</span></div>
+<div class="rw"><div class="rl">Savings</div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="w-sav" value="44000" oninput="syncSav()"></div></div>
+<div class="rw"><div><div class="rl">Pension</div><div class="rs">update quarterly</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="w-pen" value="136381" oninput="calc()"></div></div>
+<div class="rw"><div class="rl">ISA (Vanguard)</div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="w-isa" value="20207" oninput="calc()"></div></div>
+<div class="rw"><div class="rl">Watch collection</div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="w-wat" value="50000" oninput="calc()"></div></div>
+<div class="rw"><div class="rl">Car</div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="w-car" value="40000" oninput="calc()"></div></div>
+<div class="rw" style="border-bottom:none;margin-top:4px;padding-top:12px;border-top:.5px solid var(--l2)"><div class="rl" style="font-weight:500">Total net worth</div><span class="rv gld" id="w-tot" style="font-weight:500">...</span></div>
+</div></div>
+<div class="sect">RSU vests &mdash; 48hr rule</div>
+<div class="card"><div class="cb">
+<div class="rw"><div><div class="rl">Mar 26 2026 &mdash; sold</div><div class="rs">$9k USD &rarr; &pound;7,500</div></div><div style="text-align:right"><div class="rv grn">&pound;7,500</div><div style="margin-top:3px"><span class="bdg bgg" style="font-size:9px">SOLD &#10003;</span></div></div></div>
+<div class="rw"><div><div class="rl">Jun 2026 next vest</div><div class="rs">estimated</div></div><div class="fi-wrap"><span class="fi-pfx">&pound;</span><input class="fi" type="number" id="w-rsu" value="7000" oninput="calc()"></div></div>
+<div class="rw" style="border-bottom:none"><div class="rl">Rule</div><span class="bdg br">SELL WITHIN 48HRS</span></div>
+<div class="note nr" style="margin-top:8px">No exceptions. Concentrated in Salesforce via salary, bonus, pension and career.</div>
+</div></div>
+<div class="sect">Watches</div>
+<div class="card"><div class="cb">
+<div class="wi"><div class="wc">&#8986;</div><div><div class="wb">Vacheron Constantin</div><div class="wn">Overseas 4520V &middot; Blue Dial</div></div><div class="wp">&pound;25,000</div></div>
+<div class="wi"><div class="wc">&#8986;</div><div><div class="wb">Rolex</div><div class="wn">GMT-Master II Batman</div></div><div class="wp">&pound;14,500</div></div>
+<div class="wi" style="background:rgba(245,185,66,.05);margin:-14px -16px;margin-top:10px;padding:12px 16px;border-top:.5px solid rgba(245,185,66,.2)"><div class="wc">&#8986;</div><div><div class="wb">Rolex &middot; Pending</div><div class="wn">Submariner Date 41mm</div><div class="wo">&#8594; DJ 41 Jubilee &middot; After Apr 14</div></div><div class="wp" style="color:var(--am)">&pound;10,500</div></div>
+</div></div>
+<div class="sect">Goals</div>
+<div class="card"><div class="cb" id="goals-body"></div></div>
+<div class="sect">Timeline</div>
+<div class="card"><div class="cb">
+<div class="ti"><div class="td dn">&#10003;</div><div class="tc"><div class="tt">Pension nomination</div><div class="tdt">Done Mar 2026</div></div></div>
+<div class="ti"><div class="td dn">&#10003;</div><div class="tc"><div class="tt">ISA maxed &mdash; &pound;20k Vanguard</div><div class="tdt">Done Mar 2026</div></div></div>
+<div class="ti"><div class="td ug">!</div><div class="tc"><div class="tt">Mirror wills &mdash; book solicitor</div><div class="tdt">URGENT</div></div></div>
+<div class="ti"><div class="td ug">!</div><div class="tc"><div class="tt">JISAs &mdash; &pound;375/mo standing orders</div><div class="tdt">Before April 5th</div></div></div>
+<div class="ti"><div class="td">&#8594;</div><div class="tc"><div class="tt">Nursery ends &mdash; +&pound;2,500/mo</div><div class="tdt">Sep 2026</div></div></div>
+<div class="ti"><div class="td">&#8594;</div><div class="tc"><div class="tt">Mortgage renewal</div><div class="tdt">May 2027</div></div></div>
+<div class="ti"><div class="td">&#8594;</div><div class="tc"><div class="tt">Girls start school / possible move</div><div class="tdt">Sep 2027&ndash;2028</div></div></div>
+</div></div>
 </div>
 
 <nav class="nav">
-  <button class="ni on" id="n0" onclick="go(0)"><div class="nd"></div><div class="nii">&#9672;</div><div class="nil">Home</div></button>
-  <button class="ni" id="n1" onclick="go(1)"><div class="nd"></div><div class="nii">&#10177;</div><div class="nil">Money</div></button>
-  <button class="ni" id="n2" onclick="go(2)"><div class="nd"></div><div class="nii">&#11041;</div><div class="nil">Property</div></button>
-  <button class="ni" id="n3" onclick="go(3)"><div class="nd"></div><div class="nii">&#9671;</div><div class="nil">Wealth</div></button>
-  <button class="ni" id="n4" onclick="go(4)"><div class="nd"></div><div class="nii">&#10059;</div><div class="nil">Family</div></button>
+<button class="ni on" id="n0" onclick="go(0)"><div class="nd"></div><div class="nii">&#9672;</div><div class="nil">Home</div></button>
+<button class="ni" id="n1" onclick="go(1)"><div class="nd"></div><div class="nii">&#128197;</div><div class="nil">Month</div></button>
+<button class="ni" id="n2" onclick="go(2)"><div class="nd"></div><div class="nii">&#10177;</div><div class="nil">Money</div></button>
+<button class="ni" id="n3" onclick="go(3)"><div class="nd"></div><div class="nii">&#11041;</div><div class="nil">Property</div></button>
+<button class="ni" id="n4" onclick="go(4)"><div class="nd"></div><div class="nii">&#9671;</div><div class="nil">Wealth</div></button>
 </nav>
 <script>
-var BILLS = [
-  {id:'mortgage', n:'Mortgage - Tradewinds', c:'property', v:970, on:true},
-  {id:'nursery',  n:'Nursery (Aliya + Amira)', c:'family', v:2500, on:true},
-  {id:'energy',   n:'EDF Energy', c:'essential', v:256, on:true},
-  {id:'service',  n:'Service charge Studio', c:'property', v:500, on:true},
-  {id:'cleaner',  n:'Cleaner', c:'lifestyle', v:160, on:true},
-  {id:'carins',   n:'Car insurance Aviva', c:'essential', v:175, on:true},
-  {id:'homeins',  n:'Home insurance', c:'essential', v:79, on:true},
-  {id:'maeving',  n:'Maeving insurance', c:'essential', v:95, on:true},
-  {id:'fuel',     n:'Fuel', c:'essential', v:110, on:true},
-  {id:'internet', n:'Internet', c:'essential', v:59, on:true},
-  {id:'phone',    n:'Phone', c:'essential', v:58, on:true},
-  {id:'nowtv',    n:'NOW TV', c:'lifestyle', v:35, on:true},
-  {id:'youtube',  n:'YouTube Family', c:'lifestyle', v:25, on:true},
-  {id:'chatgpt',  n:'ChatGPT', c:'lifestyle', v:20, on:true},
-  {id:'netflix',  n:'Netflix', c:'lifestyle', v:18, on:true},
-  {id:'council',  n:'Council Tax', c:'essential', v:0, on:true}
-];
-var GOALS = [
-  {id:'g1', t:'Mirror wills - book solicitor', d:'URGENT - girls are 2', u:true, dn:false},
-  {id:'g2', t:'JISAs - 375/mo standing orders', d:'Before April 5th', u:true, dn:false},
-  {id:'g3', t:'Cross-border tax advisor', d:'Q2 2026', u:false, dn:false},
-  {id:'g4', t:'Rolex Sub swap DJ41 Jubilee', d:'After April 14th', u:false, dn:false},
-  {id:'g5', t:'Salesforce comp call', d:'Mar 31 - Apr 10', u:false, dn:false}
-];
-function q(id){ return document.getElementById(id); }
-function n(id){ return parseFloat(q(id).value) || 0; }
-function fmt(v){ return '£' + Math.round(v).toLocaleString('en-GB'); }
-function go(i) {
-  var j;
-  for(j=0;j<5;j++){
-    q('p'+j).className = 'pg' + (j===i?' on':'');
-    q('n'+j).className = 'ni' + (j===i?' on':'');
-  }
-  window.scrollTo(0,0);
+var BILLS=[{id:'mortgage',n:'Mortgage - Tradewinds',c:'property',v:970,on:true},{id:'nursery',n:'Nursery (Aliya + Amira)',c:'family',v:2500,on:true},{id:'energy',n:'EDF Energy',c:'essential',v:256,on:true},{id:'service',n:'Service charge Studio',c:'property',v:0,on:true},{id:'cleaner',n:'Cleaner',c:'lifestyle',v:160,on:true},{id:'carins',n:'Car insurance Aviva',c:'essential',v:175,on:true},{id:'homeins',n:'Home insurance',c:'essential',v:79,on:true},{id:'maeving',n:'Maeving insurance',c:'essential',v:95,on:true},{id:'fuel',n:'Fuel',c:'essential',v:110,on:true},{id:'internet',n:'Internet',c:'essential',v:59,on:true},{id:'phone',n:'Phone',c:'essential',v:58,on:true},{id:'nowtv',n:'NOW TV',c:'lifestyle',v:35,on:true},{id:'youtube',n:'YouTube Family',c:'lifestyle',v:25,on:true},{id:'chatgpt',n:'ChatGPT',c:'lifestyle',v:20,on:true},{id:'netflix',n:'Netflix',c:'lifestyle',v:18,on:true},{id:'council',n:'Council Tax',c:'essential',v:0,on:true}];
+var GOALS=[{id:'g1',t:'Mirror wills - book solicitor',d:'URGENT - girls are 2',u:true,dn:false},{id:'g2',t:'JISAs - 375/mo standing orders each',d:'Before April 5th',u:true,dn:false},{id:'g3',t:'Cross-border tax advisor',d:'Q2 2026',u:false,dn:false},{id:'g4',t:'Rolex Sub swap - DJ41 Jubilee',d:'After April 14th W+W',u:false,dn:false},{id:'g5',t:'Salesforce comp call',d:'Mar 31 - Apr 10',u:false,dn:false}];
+var SCEN={nursery:false,france:false,promo:false};
+var HISTORY=[];
+function q(id){return document.getElementById(id);}
+function n(id){var el=q(id);return el?(parseFloat(el.value)||0):0;}
+function fmt(v){return '£'+Math.round(v).toLocaleString('en-GB');}
+function go(i){var j;for(j=0;j<5;j++){q('p'+j).className='pg'+(j===i?' on':'');q('n'+j).className='ni'+(j===i?' on':'');}window.scrollTo(0,0);}
+function billsTotal(){return BILLS.reduce(function(s,b){return s+(b.on?b.v:0);},0);}
+function calc(){
+var sal=n('salary'),rent=n('rental');
+var totalIn=sal+rent,out=billsTotal(),sur=totalIn-out;
+var surPct=totalIn>0?Math.min(100,Math.max(0,Math.round(sur/totalIn*100))):0;
+var scenIn=totalIn,scenOut=out;
+if(SCEN.nursery)scenOut-=2500;
+if(SCEN.france)scenIn=scenIn-rent+n('p2r')+n('p1v')*0.0046;
+if(SCEN.promo)scenIn+=sal*0.20;
+var scenSur=scenIn-scenOut;
+var p1v=n('p1v'),p1m=n('p1m'),p2v=n('p2v'),p2r=n('p2r');
+var eq1=p1v-p1m,eq2=p2v,eqT=eq1+eq2;
+var sav=n('savings'),savT=n('savtgt')||50000;
+var savPct=Math.min(100,Math.round(sav/savT*100)),savGap=Math.max(0,savT-sav);
+var pen=n('w-pen'),isa=n('w-isa'),wat=n('w-wat'),car=n('w-car');
+var nw=sav+pen+isa+eqT+wat+car;
+if(document.activeElement!==q('w-sav'))q('w-sav').value=Math.round(sav);
+if(document.activeElement!==q('log-sav'))q('log-sav').value=Math.round(sav);
+q('nw').textContent=fmt(nw);
+q('h-sav').textContent=fmt(sav);q('h-sav-sub').textContent=savGap>0?fmt(savGap)+' to floor':'Floor reached!';
+q('h-eq').textContent=fmt(eqT);q('h-pen').textContent=fmt(pen);
+q('h-sur').textContent=(sur>=0?'+':'')+ fmt(sur);q('h-sur').className='mv '+(sur>=0?'gld':'red');
+if(savGap<=0){q('h-floor').textContent='Done!';q('h-floor').className='mv grn';q('h-floor-sub').textContent='floor reached';}else if(sur>0){var mths=Math.ceil(savGap/sur);var fd=new Date();fd.setMonth(fd.getMonth()+mths);q('h-floor').textContent=fd.toLocaleDateString('en-GB',{month:'short',year:'numeric'});q('h-floor').className='mv gld';q('h-floor-sub').textContent=mths+' months at current rate';}else{q('h-floor').textContent='-';q('h-floor-sub').textContent='increase surplus';}
+q('total-in').textContent=fmt(totalIn);q('cf-in').textContent=fmt(totalIn);q('cf-out').textContent=fmt(out);
+q('cf-net').textContent=(sur>=0?'+':'')+ fmt(sur);q('cfbar').style.width=surPct+'%';
+q('sav-bar').style.width=savPct+'%';
+if(savGap<=0){q('sav-note').textContent='Floor reached!';q('sav-date').textContent='Done';q('sav-date').className='floor-date grn';}else if(sur>0){var mths2=Math.ceil(savGap/sur);var fd2=new Date();fd2.setMonth(fd2.getMonth()+mths2);q('sav-note').textContent=fmt(savGap)+' remaining';q('sav-date').textContent=fd2.toLocaleDateString('en-GB',{month:'short',year:'numeric'});q('sav-date').className='floor-date';}else{q('sav-note').textContent='Increase surplus';q('sav-date').textContent='-';q('sav-date').className='floor-date red';}
+var anyScen=SCEN.nursery||SCEN.france||SCEN.promo,si=q('scen-impact');
+if(anyScen){var diff=scenSur-sur;var h='<div class="impact-row"><span>Base surplus</span><span class="impact-val gld">'+(sur>=0?'+':'')+ fmt(sur)+'</span></div>';h+='<div class="impact-row"><span>Scenario surplus</span><span class="impact-val grn">'+(scenSur>=0?'+':'')+ fmt(scenSur)+'</span></div>';h+='<div class="impact-row" style="font-weight:500;padding-top:6px;border-top:.5px solid var(--l2);margin-top:4px"><span>Change</span><span class="impact-val '+(diff>=0?'grn':'red')+'">'+(diff>=0?'+':'')+ fmt(diff)+'/mo</span></div>';if(savGap>0&&scenSur>0){var sm=Math.ceil(savGap/scenSur);var sd=new Date();sd.setMonth(sd.getMonth()+sm);h+='<div class="impact-row" style="margin-top:4px"><span>Floor in scenario</span><span class="impact-val">'+sd.toLocaleDateString('en-GB',{month:'short',year:'numeric'})+'</span></div>';}si.innerHTML=h;si.style.display='block';}else{si.style.display='none';}
+q('p1eq').textContent=fmt(eq1);q('p-val').textContent=fmt(p1v+p2v);q('p-eq').textContent=fmt(eqT);
+q('p2ann').textContent=fmt(p2r*12);q('p2yld').textContent=p2v>0?(p2r*12/p2v*100).toFixed(1)+'%':'-';
+var frG=p2r+p1v*0.0046;q('fr-g').textContent=fmt(frG)+'/mo';
+q('fr-n').textContent='£'+Math.round(frG*0.55)+'/mo (~€'+Math.round(frG*0.55*1.17)+')';
+q('w-eq').textContent=fmt(eqT);q('w-tot').textContent=fmt(nw);
+if(q('log-eq')){var lm=n('log-mort');q('log-eq').textContent=fmt(p1v-lm);}
+renderUrgent();save();
 }
-function billsTotal() {
-  return BILLS.reduce(function(s,b){ return s + (b.on ? b.v : 0); }, 0);
+function updateLogTotal(){
+var total=n('log-sal')+n('log-rsu')+n('log-bon')+n('log-rent');
+q('log-total').textContent=fmt(total);
+var curSav=n('log-sav');
+var lastSav=HISTORY.length>0?HISTORY[HISTORY.length-1].sav:n('savings');
+var diff=curSav-lastSav;
+q('log-sav-diff').textContent=(diff>=0?'+':'')+ fmt(diff);
+q('log-sav-diff').className='rv '+(diff>=0?'grn':'red');
+var p1v=n('p1v'),lm=n('log-mort');
+if(q('log-eq'))q('log-eq').textContent=fmt(p1v-lm);
 }
-function calc() {
-  var sal = n('salary'), rent = n('rental'), bon = n('bonus');
-  var totalIn = sal + rent + bon;
-  var out = billsTotal();
-  var sur = totalIn - out;
-  var surPct = totalIn > 0 ? Math.min(100, Math.max(0, Math.round(sur/totalIn*100))) : 0;
-  var p1v = n('p1v'), p1m = n('p1m');
-  var p2v = n('p2v'), p2r = n('p2r');
-  var eq1 = p1v - p1m, eq2 = p2v, eqT = eq1 + eq2;
-  var propV = p1v + p2v;
-  var sav = n('savings'), savT = n('savtgt') || 50000;
-  var savPct = Math.min(100, Math.round(sav/savT*100));
-  var savGap = Math.max(0, savT - sav);
-  var pen = n('w-pen'), isa = n('w-isa'), wat = n('w-wat'), car = n('w-car');
-  var nw = sav + pen + isa + eqT + wat + car;
-  if(document.activeElement !== q('w-sav')) q('w-sav').value = Math.round(sav);
-  q('nw').textContent = fmt(nw);
-  q('h-sav').textContent = fmt(sav);
-  q('h-eq').textContent = fmt(eqT);
-  q('h-pen').textContent = fmt(pen);
-  q('h-in').textContent = fmt(totalIn);
-  q('h-sur').textContent = (sur>=0?'+':'') + fmt(sur);
-  q('h-sur').className = 'mv ' + (sur>=0?'gld':'red');
-  q('total-in').textContent = fmt(totalIn);
-  q('cf-in').textContent = fmt(totalIn);
-  q('cf-out').textContent = fmt(out);
-  q('cf-net').textContent = (sur>=0?'+':'') + fmt(sur);
-  q('cfbar').style.width = surPct + '%';
-  q('sav-bar').style.width = savPct + '%';
-  q('sav-note').textContent = savGap > 0 ? fmt(savGap) + ' to reach floor target' : 'Floor reached! Deploy excess to Vanguard';
-  q('p1eq').textContent = fmt(eq1);
-  q('p-val').textContent = fmt(propV);
-  q('p-eq').textContent = fmt(eqT);
-  q('p2ann').textContent = fmt(p2r * 12);
-  q('p2yld').textContent = p2v > 0 ? (p2r*12/p2v*100).toFixed(1)+'%' : '-';
-  var frG = p2r + p1v * 0.0046;
-  q('fr-g').textContent = fmt(frG) + '/mo';
-  q('fr-n').textContent = '£' + Math.round(frG*0.55) + '/mo (~€' + Math.round(frG*0.55*1.17) + ')';
-  q('w-eq').textContent = fmt(eqT);
-  q('w-tot').textContent = fmt(nw);
-  renderUrgent();
-  save();
+function commitLog(){
+var now=new Date();
+var monthKey=now.toLocaleDateString('en-GB',{month:'short',year:'numeric'});
+var entry={month:monthKey,sal:n('log-sal'),rsu:n('log-rsu'),bon:n('log-bon'),rent:n('log-rent'),sav:n('log-sav'),mort:n('log-mort'),ts:now.getTime()};
+HISTORY=HISTORY.filter(function(h){return h.month!==monthKey;});
+HISTORY.push(entry);HISTORY.sort(function(a,b){return a.ts-b.ts;});
+q('savings').value=entry.sav;q('w-sav').value=entry.sav;q('p1m').value=entry.mort;
+q('salary').value=entry.sal;q('rental').value=entry.rent;
+renderHistory();calc();
+var btn=document.querySelector('.log-btn');btn.textContent='✓ Saved!';
+btn.style.background='rgba(82,214,138,.15)';
+setTimeout(function(){btn.innerHTML='✓ Confirm &amp; Save This Month';btn.style.background='';},2000);
 }
-function syncMortgage() {
-  var v = n('p1pay');
-  var b = BILLS.find(function(x){ return x.id === 'mortgage'; });
-  if(b) { b.v = v; renderBills(); }
-  calc();
+function renderHistory(){
+if(!HISTORY.length){q('hist-body').innerHTML='<div class="hint">No months logged yet. Log your first month above.</div>';return;}
+var h='',reversed=HISTORY.slice().reverse().slice(0,6);
+reversed.forEach(function(m){
+var total=m.sal+m.rsu+m.bon+m.rent;
+h+='<div class="hist-item"><div class="hist-month">'+m.month+'</div>';
+h+='<div class="hist-row"><span class="hist-l">Salary</span><span class="hist-v">'+fmt(m.sal)+'</span></div>';
+if(m.rsu>0)h+='<div class="hist-row"><span class="hist-l">RSU vest</span><span class="hist-v grn">'+fmt(m.rsu)+'</span></div>';
+if(m.bon>0)h+='<div class="hist-row"><span class="hist-l">Bonus</span><span class="hist-v grn">'+fmt(m.bon)+'</span></div>';
+h+='<div class="hist-row"><span class="hist-l">Rental</span><span class="hist-v">'+fmt(m.rent)+'</span></div>';
+h+='<div class="hist-row" style="margin-top:6px;padding-top:6px;border-top:.5px solid var(--ln)"><span class="hist-l" style="font-weight:500">Total in</span><span class="hist-v grn" style="font-weight:500">'+fmt(total)+'</span></div>';
+h+='<div class="hist-row"><span class="hist-l">Savings balance</span><span class="hist-v gld">'+fmt(m.sav)+'</span></div></div>';
+});
+q('hist-body').innerHTML=h;
 }
-function syncRental() {
-  var v = n('p2r');
-  if(q('rental')) q('rental').value = v;
-  calc();
+function syncMortgage(){var v=n('p1pay');var b=BILLS.find(function(x){return x.id==='mortgage';});if(b){b.v=v;renderBills();}calc();}
+function syncRental(){if(q('rental'))q('rental').value=q('p2r').value;calc();}
+function syncSav(){if(q('savings'))q('savings').value=q('w-sav').value;if(q('log-sav'))q('log-sav').value=q('w-sav').value;calc();}
+function togScen(id){SCEN[id]=!SCEN[id];q('scen-'+id).className='tog'+(SCEN[id]?' on':'');calc();}
+function renderBills(){
+var h='',tot=0;
+BILLS.forEach(function(b){
+tot+=b.on?b.v:0;
+h+='<div class="rw"><div style="display:flex;align-items:center;gap:10px"><div class="tog'+(b.on?' on':'')+ '" onclick="togBill(\''+ b.id +'\')"></div>'+'<div style="opacity:'+(b.on?1:0.4)+'"><div class="rl">'+b.n+'</div><div class="rs">'+b.c+'</div></div></div>';
+if(b.v===0){h+='<span class="rv grn" style="opacity:'+(b.on?1:0.4)+'">£PAID \u2713</span>';}else{h+='<div class="fi-wrap" style="opacity:'+(b.on?1:0.4)+'"><span class="fi-pfx">£</span><input class="fi" type="number" value="'+b.v+'" data-id="'+b.id+'" oninput="updBill(this)"></div>';}
+h+='</div>';
+});
+h+='<div class="rw" style="border-bottom:none;margin-top:4px;padding-top:12px;border-top:.5px solid var(--l2)"><div class="rl" style="font-weight:500">Total bills</div><span class="rv red" style="font-weight:500">'+fmt(tot)+'</span></div>';
+q('bills-body').innerHTML=h;
 }
-function syncSav() {
-  if(q('savings')) q('savings').value = q('w-sav').value;
-  calc();
-}
-function renderBills() {
-  var h = '', tot = 0;
-  BILLS.forEach(function(b) {
-    tot += b.on ? b.v : 0;
-    h += '<div class="rw">';
-    h += '<div style="display:flex;align-items:center;gap:10px">';
-    h += '<div class="tog' + (b.on?' on':'') + '" onclick="togBill(\''+ b.id +'\')" title="Toggle"></div>';
-    h += '<div style="opacity:' + (b.on?1:0.4) + '">' + '<div class="rl">' + b.n + '</div><div class="rs">' + b.c + '</div></div></div>';
-    if(b.v === 0) {
-      h += '<span class="rv grn" style="opacity:' + (b.on?1:0.4) + '">PAID</span>';
-    } else {
-      h += '<div class="fi-wrap" style="opacity:' + (b.on?1:0.4) + '"><span class="fi-pfx">£</span>';
-      h += '<input class="fi" type="number" value="' + b.v + '" data-id="' + b.id + '" oninput="updBill(this)"></div>';
-    }
-    h += '</div>';
-  });
-  h += '<div class="rw" style="border-bottom:none;margin-top:4px;padding-top:12px;border-top:.5px solid var(--l2)"><div class="rl" style="font-weight:500">Total bills</div><span class="rv red" style="font-weight:500">' + fmt(tot) + '</span></div>';
-  q('bills-body').innerHTML = h;
-}
-function togBill(id) {
-  var b = BILLS.find(function(x){ return x.id===id; });
-  if(b) { b.on = !b.on; renderBills(); calc(); }
-}
-function updBill(el) {
-  var id = el.getAttribute('data-id');
-  var b = BILLS.find(function(x){ return x.id===id; });
-  if(b) {
-    b.v = parseFloat(el.value) || 0;
-    if(id === 'mortgage' && q('p1pay')) q('p1pay').value = Math.round(b.v);
-    calc();
-  }
-}
-function renderGoals() {
-  var h = '';
-  GOALS.forEach(function(g) {
-    h += '<div class="gi"><button class="gt ' + (g.dn?'dn':g.u?'ug':'') + '" onclick="togGoal(\''+ g.id +'\')">'+ (g.dn?'✓':g.u?'!':'')+'</button>';
-    h += '<div class="gw"><div class="gtx' + (g.dn?' dn':'') + '">' + g.t + '</div><div class="gd' + (g.u&&!g.dn?' ug':'') + '">' + g.d + '</div></div></div>';
-  });
-  q('goals-body').innerHTML = h;
-}
-function togGoal(id) {
-  var g = GOALS.find(function(x){ return x.id===id; });
-  if(g) { g.dn = !g.dn; renderGoals(); renderUrgent(); save(); }
-}
-function renderUrgent() {
-  var urgent = GOALS.filter(function(g){ return g.u && !g.dn; });
-  var h = '';
-  if(!urgent.length) {
-    h = '<div style="font-size:13px;color:var(--gr);text-align:center;padding:6px 0">All urgent items done ✓</div>';
-  } else {
-    urgent.forEach(function(g) {
-      h += '<div class="gi"><button class="gt ug" onclick="togGoal(\''+ g.id +'\')">!</button><div class="gw"><div class="gtx">' + g.t + '</div><div class="gd ug">' + g.d + '</div></div></div>';
-    });
-  }
-  q('urgent').innerHTML = h;
-}
+function togBill(id){var b=BILLS.find(function(x){return x.id===id;});if(b){b.on=!b.on;renderBills();calc();}}
+function updBill(el){var id=el.getAttribute('data-id');var b=BILLS.find(function(x){return x.id===id;});if(b){b.v=parseFloat(el.value)||0;if(id==='mortgage'&&q('p1pay'))q('p1pay').value=Math.round(b.v);calc();}}
+function renderGoals(){var h='';GOALS.forEach(function(g){h+='<div class="gi"><button class="gt '+(g.dn?'dn':g.u?'ug':'')+ '" onclick="togGoal(\''+ g.id +'\')">'+(g.dn?'✓':g.u?'!':'')+'</button><div class="gw"><div class="gtx'+(g.dn?' dn':'')+ '">'+g.t+'</div><div class="gd'+(g.u&&!g.dn?' ug':'')+ '">'+g.d+'</div></div></div>';});q('goals-body').innerHTML=h;}
+function togGoal(id){var g=GOALS.find(function(x){return x.id===id;});if(g){g.dn=!g.dn;renderGoals();renderUrgent();save();}}
+function renderUrgent(){var urgent=GOALS.filter(function(g){return g.u&&!g.dn;});var h='';if(!urgent.length){h='<div style="font-size:13px;color:var(--gr);text-align:center;padding:6px 0">All urgent items done ✓</div>';}else{urgent.forEach(function(g){h+='<div class="gi"><button class="gt ug" onclick="togGoal(\''+ g.id +'\')">!</button><div class="gw"><div class="gtx">'+g.t+'</div><div class="gd ug">'+g.d+'</div></div></div>';});}q('urgent').innerHTML=h;}
+function drawCountdown(){var now=new Date(),ww=new Date('2026-04-14T09:00:00'),diff=ww-now;if(diff<0){q('ww-cd').innerHTML='<div class="mc" style="text-align:center;grid-column:span 3"><div class="ml">W+W</div><div class="mv gld">Today!</div></div>';return;}var days=Math.floor(diff/86400000),hours=Math.floor((diff%86400000)/3600000),mins=Math.floor((diff%3600000)/60000);q('ww-cd').innerHTML='<div class="cd-item"><div class="cd-n">'+days+'</div><div class="cd-l">Days</div></div><div class="cd-item"><div class="cd-n">'+hours+'</div><div class="cd-l">Hours</div></div><div class="cd-item"><div class="cd-n">'+mins+'</div><div class="cd-l">Mins</div></div>';}
+async function runBrief(){var btn=q('brief-btn'),sp=q('brief-spin'),tx=q('brief-txt'),out=q('brief-out');btn.disabled=true;sp.className='ai-spin on';tx.textContent='Generating...';out.className='ai-out on';out.textContent='Thinking...';
+var sal=n('salary'),rent=n('rental'),sav=n('savings'),bills=billsTotal(),sur=sal+rent-bills,savGap=Math.max(0,n('savtgt')-sav);
+var today=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+var lastMonth=HISTORY.length>0?HISTORY[HISTORY.length-1]:null;
+var lastStr=lastMonth?' Last logged: '+fmt(lastMonth.sal+lastMonth.rsu+lastMonth.bon+lastMonth.rent)+' in, savings '+fmt(lastMonth.sav)+'.':''+' Mar 2026: salary £12,700 + RSU £7,500 + rental £1,523 = £21,723 in, savings now £44,000.';
+var prompt='Personal advisor to Mehdi Said. RVP EMEA Agentforce Salesforce month 2. Exceptional FY27 rating. Today: '+today+'. Numbers: net salary '+fmt(sal)+'/mo, rental '+fmt(rent)+'/mo, surplus '+fmt(sur)+'/mo, savings '+fmt(sav)+', '+fmt(savGap)+' to floor, net worth approx 1.1M GBP.'+lastStr+' URGENT: mirror wills not done, JISAs not set up (April 5th), comp call Mar 31-Apr 10, W+W April 14 Rolex swap. Write sharp personal morning brief max 180 words. Sections **TODAY** **MONEY** **THIS WEEK** **THOUGHT** - direct, specific, no filler.';
+try{var res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:500,messages:[{role:'user',content:prompt}]})});
+var data=await res.json();if(data.error)throw new Error(data.error.message);
+var raw=data.content.filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('\n').trim();
+out.innerHTML='';
+raw.split('\n').forEach(function(l){l=l.trim();if(!l)return;var d=document.createElement('div');if(l.charAt(0)==='*'&&l.charAt(1)==='*'){d.className='ai-head';d.textContent=l.replace(/\*\*/g,'');}else if(l.charAt(0)==='-'&&l.charAt(1)===' '){d.className='ai-bul';d.textContent=l.slice(2);}else{d.style.marginBottom='5px';d.textContent=l;}out.appendChild(d);});
+}catch(err){out.textContent='Error: '+err.message;}
+btn.disabled=false;sp.className='ai-spin';tx.textContent='\u21ba Refresh Brief';}
 var saveTimer;
-function save() {
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(function() {
-    try {
-      var st = {
-        salary:n('salary'),rental:n('rental'),bonus:n('bonus'),
-        savings:n('savings'),savtgt:n('savtgt'),
-        p1v:n('p1v'),p1m:n('p1m'),p1pay:n('p1pay'),p1rent:n('p1rent'),
-        p2v:n('p2v'),p2r:n('p2r'),
-        wpen:n('w-pen'),wisa:n('w-isa'),wwat:n('w-wat'),wcar:n('w-car'),wrsu:n('w-rsu'),
-        bills:BILLS.map(function(b){ return {id:b.id,v:b.v,on:b.on}; }),
-        goals:GOALS.map(function(g){ return {id:g.id,dn:g.dn}; })
-      };
-      localStorage.setItem('mehdi_v4', JSON.stringify(st));
-    } catch(e){}
-    var sv = q('SV'); sv.className='sv on';
-    setTimeout(function(){ sv.className='sv'; }, 2000);
-  }, 500);
-}
-function load() {
-  try {
-    var raw = localStorage.getItem('mehdi_v4');
-    if(!raw) return;
-    var st = JSON.parse(raw);
-    var map = {salary:'salary',rental:'rental',bonus:'bonus',savings:'savings',savtgt:'savtgt',p1v:'p1v',p1m:'p1m',p1pay:'p1pay',p1rent:'p1rent',p2v:'p2v',p2r:'p2r',wpen:'w-pen',wisa:'w-isa',wwat:'w-wat',wcar:'w-car',wrsu:'w-rsu'};
-    Object.keys(map).forEach(function(k){ if(st[k]!==undefined && q(map[k])) q(map[k]).value = st[k]; });
-    if(st.bills) st.bills.forEach(function(b){ var x=BILLS.find(function(y){return y.id===b.id;}); if(x){x.v=b.v;x.on=b.on;} });
-    if(st.goals) st.goals.forEach(function(b){ var g=GOALS.find(function(y){return y.id===b.id;}); if(g) g.dn=b.dn; });
-  } catch(e){}
-}
-q('D').textContent = new Date().toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
-load();
-renderBills();
-renderGoals();
-calc();
-if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function(){});
+function save(){clearTimeout(saveTimer);saveTimer=setTimeout(function(){try{var st={salary:n('salary'),rental:n('rental'),savings:n('savings'),savtgt:n('savtgt'),p1v:n('p1v'),p1m:n('p1m'),p1pay:n('p1pay'),p2v:n('p2v'),p2r:n('p2r'),wpen:n('w-pen'),wisa:n('w-isa'),wwat:n('w-wat'),wcar:n('w-car'),wrsu:n('w-rsu'),bills:BILLS.map(function(b){return {id:b.id,v:b.v,on:b.on};}),goals:GOALS.map(function(g){return {id:g.id,dn:g.dn};}),history:HISTORY};localStorage.setItem('mehdi_v5',JSON.stringify(st));}catch(e){}var sv=q('SV');sv.className='sv on';setTimeout(function(){sv.className='sv';},2000);},500);}
+function load(){try{var raw=localStorage.getItem('mehdi_v5');if(!raw)return;var st=JSON.parse(raw);var map={salary:'salary',rental:'rental',savings:'savings',savtgt:'savtgt',p1v:'p1v',p1m:'p1m',p1pay:'p1pay',p2v:'p2v',p2r:'p2r',wpen:'w-pen',wisa:'w-isa',wwat:'w-wat',wcar:'w-car',wrsu:'w-rsu'};Object.keys(map).forEach(function(k){if(st[k]!==undefined&&q(map[k]))q(map[k]).value=st[k];});if(st.bills)st.bills.forEach(function(b){var x=BILLS.find(function(y){return y.id===b.id;});if(x){x.v=b.v;x.on=b.on;}});if(st.goals)st.goals.forEach(function(b){var g=GOALS.find(function(y){return y.id===b.id;});if(g)g.dn=b.dn;});if(st.history)HISTORY=st.history;}catch(e){}}
+var now=new Date();
+q('D').textContent=now.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+q('log-month-label').textContent=now.toLocaleDateString('en-GB',{month:'long',year:'numeric'});
+load();renderBills();renderGoals();renderHistory();calc();updateLogTotal();drawCountdown();setInterval(drawCountdown,60000);
+if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(function(){});
 </script>
 </body>
 </html>
