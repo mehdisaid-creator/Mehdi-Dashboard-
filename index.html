@@ -135,6 +135,38 @@ input.fi-lg{font-size:24px;width:150px}
 .scen-impact{font-size:13px;color:var(--i2);padding:10px 0;border-top:.5px solid var(--ln);margin-top:8px}
 .impact-row{display:flex;justify-content:space-between;margin-bottom:4px}
 .impact-val{font-family:monospace;font-size:13px}
+.wt-card{background:var(--s1);border:.5px solid var(--ln);border-radius:14px;margin-bottom:10px;overflow:hidden}
+.wt-head{padding:12px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.wt-brand{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--i3);margin-bottom:3px}
+.wt-model{font-size:14px;color:var(--i1);font-weight:500;line-height:1.3}
+.wt-ref{font-size:10px;font-family:monospace;color:var(--i3);margin-top:2px}
+.wt-badge{font-size:9px;font-weight:600;padding:2px 8px;border-radius:20px;border:.5px solid;white-space:nowrap;flex-shrink:0}
+.wt-badge-own{color:var(--gold);border-color:rgba(200,169,110,.4);background:rgba(200,169,110,.1)}
+.wt-badge-in{color:var(--gr);border-color:rgba(82,214,138,.4);background:rgba(82,214,138,.1)}
+.wt-badge-trade{color:var(--am);border-color:rgba(245,185,66,.4);background:rgba(245,185,66,.1)}
+.wt-body{padding:0 16px 14px;border-top:.5px solid var(--ln)}
+.wt-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:.5px solid var(--ln)}
+.wt-row:last-child{border-bottom:none}
+.wt-lbl{font-size:12px;color:var(--i3)}
+.wt-val{font-size:12px;font-family:monospace;color:var(--i1)}
+.wt-val.gld{color:var(--gold)}.wt-val.grn{color:var(--gr)}.wt-val.red{color:var(--rd)}.wt-val.amb{color:var(--am)}
+.wt-pnl{display:flex;align-items:center;gap:8px}
+.pnl-bar{height:3px;border-radius:2px;min-width:40px;max-width:80px;background:var(--s4)}
+.pnl-fill{height:100%;border-radius:2px}
+.pnl-pos{background:var(--gr)}.pnl-neg{background:var(--rd)}.pnl-unk{background:var(--i3)}
+.ledger-item{padding:10px 0;border-bottom:.5px solid var(--ln)}
+.ledger-item:last-child{border-bottom:none}
+.ledger-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px}
+.ledger-act{font-size:12px;color:var(--i2);font-weight:500}
+.ledger-yr{font-size:10px;font-family:monospace;color:var(--i3)}
+.ledger-watch{font-size:11px;color:var(--i3);margin-bottom:2px}
+.ledger-from{font-size:10px;color:var(--i3);font-style:italic}
+.ledger-amt{font-size:13px;font-family:monospace}
+.port-summary{background:var(--s2);border:.5px solid var(--ln);border-radius:12px;padding:14px;margin-bottom:12px}
+.port-row{display:flex;justify-content:space-between;margin-bottom:6px}
+.port-row:last-child{margin-bottom:0}
+.port-lbl{font-size:12px;color:var(--i2)}
+.port-val{font-size:13px;font-family:monospace;color:var(--i1)}
 </style>
 </head>
 <body>
@@ -275,6 +307,12 @@ input.fi-lg{font-size:24px;width:150px}
 <div class="wi"><div class="wc">&#8986;</div><div><div class="wb">Rolex</div><div class="wn">GMT-Master II Batman</div></div><div class="wp">&pound;14,500</div></div>
 <div class="wi" style="background:rgba(245,185,66,.05);margin:-14px -16px;margin-top:10px;padding:12px 16px;border-top:.5px solid rgba(245,185,66,.2)"><div class="wc">&#8986;</div><div><div class="wb">Rolex &middot; Pending</div><div class="wn">Submariner Date 41mm</div><div class="wo">&#8594; DJ 41 Jubilee &middot; After Apr 14</div></div><div class="wp" style="color:var(--am)">&pound;10,500</div></div>
 </div></div>
+<div class="sect">Watch portfolio</div>
+<div class="port-summary" id="watch-summary"></div>
+<div id="watch-cards"></div>
+<div class="sect">Trade ledger</div>
+<div class="card"><div class="cb" id="watch-ledger"></div></div>
+
 <div class="sect">Goals</div>
 <div class="card"><div class="cb" id="goals-body"></div></div>
 <div class="sect">Timeline</div>
@@ -418,6 +456,60 @@ btn.disabled=false;sp.className='ai-spin';tx.textContent='\u21ba Refresh Brief';
 function showAddBill(){var f=q('add-bill-form');f.style.display='block';var ni=q('new-bill-name');if(ni)ni.focus();}
 function hideAddBill(){q('add-bill-form').style.display='none';q('new-bill-name').value='';q('new-bill-amt').value='';}
 function addBill(){var name=(q('new-bill-name').value||'').trim();var amt=parseFloat(q('new-bill-amt').value)||0;if(!name){q('new-bill-name').style.borderColor='var(--rd)';return;}var id='custom_'+Date.now();BILLS.push({id:id,n:name,c:'custom',v:amt,on:true});hideAddBill();renderBills();calc();}
+
+var WATCHES = [
+  {id:'vc', brand:'Vacheron Constantin', model:'Overseas Perpetual Calendar Ultra-Thin', nick:'4520V Blue Dial', ref:'4520V/110A-B128', from:'Subdial', paid:25900, val:25000, status:'owned', note:'Bought via Sub TT + Root Beer trade proceeds'},
+  {id:'batman', brand:'Rolex', model:'GMT-Master II Batman', nick:'Batman + Jubilee', ref:'126710BLNR', from:'Watches of Switzerland', paid:12032, val:14500, status:'owned', note:'Bought 2022, Jubilee bracelet, 5yr WoS insurance included'},
+  {id:'reverso', brand:'Jaeger-LeCoultre', model:'Reverso Tribute Moon', nick:'Reverso Moon', ref:'Q3958420', from:'Subdial (trade)', paid:0, val:8500, status:'incoming', note:'Incoming - trade of Sub Date 2023 black'}
+];
+var WATCH_LEDGER_DATA = [
+  {yr:'2022', act:'Bought', watch:'GMT-Master II Batman + Jubilee', from:'Watches of Switzerland', out:12032, inn:0, type:'buy'},
+  {yr:'2023', act:'Bought', watch:'Submariner Date Two-Tone', from:'Retail', out:11450, inn:0, type:'buy'},
+  {yr:'2023', act:'Bought', watch:'GMT-Master II Root Beer', from:'Retail', out:12200, inn:0, type:'buy'},
+  {yr:'2024', act:'Sold pair', watch:'Sub TT + Root Beer (both)', from:'Subdial', out:0, inn:22500, type:'sell'},
+  {yr:'2024', act:'Bought', watch:'Vacheron 4520V Blue Dial', from:'Subdial', out:25900, inn:0, type:'buy'},
+  {yr:'2026', act:'Trade pending', watch:'Sub Date 2023 Black → Reverso Moon Q3958420', from:'Subdial', out:0, inn:0, type:'pending'}
+];
+function watchTotal(){return WATCHES.filter(function(w){return w.status==='owned'||w.status==='incoming';}).reduce(function(s,w){return s+w.val;},0);}
+function renderWatches(){
+var ownedPaid=WATCHES.filter(function(w){return w.status==='owned';}).reduce(function(s,w){return s+w.paid;},0);
+var closedCost=11450+12200;var closedRecv=22500;var closedPnl=closedRecv-closedCost;
+var totalVal=watchTotal();var overallPnl=totalVal-ownedPaid+closedPnl;
+var sh='<div class="port-row"><span class="port-lbl">Current portfolio value</span><span class="port-val gld">'+fmt(totalVal)+'</span></div>';
+sh+='<div class="port-row"><span class="port-lbl">Total paid (current)</span><span class="port-val">'+fmt(ownedPaid)+'</span></div>';
+sh+='<div class="port-row"><span class="port-lbl">Closed trades P&L</span><span class="port-val '+(closedPnl>=0?'grn':'red')+'">'+(closedPnl>=0?'+':'')+fmt(closedPnl)+'</span></div>';
+sh+='<div class="port-row" style="padding-top:6px;border-top:.5px solid var(--l2)"><span class="port-lbl" style="font-weight:500">Overall P&L</span><span class="port-val '+(overallPnl>=0?'grn':'red')+'" style="font-size:14px;font-weight:500">'+(overallPnl>=0?'+':'')+fmt(overallPnl)+'</span></div>';
+q('watch-summary').innerHTML=sh;
+var ch='';
+WATCHES.forEach(function(w,wi){
+var pnlKnown=w.paid>0;var pnl=w.val-w.paid;var pnlPct=pnlKnown&&w.paid>0?Math.round((pnl/w.paid)*100):0;
+var badge=w.status==='owned'?'<span class="wt-badge wt-badge-own">HOLDING</span>':w.status==='incoming'?'<span class="wt-badge wt-badge-in">INCOMING</span>':'<span class="wt-badge wt-badge-trade">TRADING</span>';
+ch+='<div class="wt-card"><div class="wt-head"><div><div class="wt-brand">'+w.brand+'</div><div class="wt-model">'+w.nick+'</div><div class="wt-ref">Ref: '+w.ref+'</div></div>'+badge+'</div><div class="wt-body">';
+ch+='<div class="wt-row"><span class="wt-lbl">Paid</span>';
+if(pnlKnown){ch+='<span class="wt-val">'+fmt(w.paid)+'</span>';}
+else if(w.status==='owned'){ch+='<div class="fi-wrap"><span class="fi-pfx">£</span><input class="fi" type="number" value="0" data-wi="'+wi+'" oninput="updWatch(this)" style="width:90px"></div>';}
+else{ch+='<span class="wt-val amb">Via trade</span>';}
+ch+='</div>';
+ch+='<div class="wt-row"><span class="wt-lbl">Current value</span><div class="fi-wrap"><span class="fi-pfx">£</span><input class="fi" type="number" value="'+w.val+'" data-wi="'+wi+'" oninput="updWatchVal(this)" style="width:90px"></div></div>';
+if(pnlKnown){var bp=Math.min(100,Math.abs(pnlPct));ch+='<div class="wt-row"><span class="wt-lbl">P&L</span><div class="wt-pnl"><div class="pnl-bar"><div class="pnl-fill '+(pnl>=0?'pnl-pos':'pnl-neg')+'" style="width:'+bp+'%"></div></div><span class="wt-val '+(pnl>=0?'grn':'red')+'">'+(pnl>=0?'+':'')+fmt(pnl)+' ('+(pnlPct>=0?'+':'')+pnlPct+'%)</span></div></div>';}
+ch+='<div class="wt-row" style="border-bottom:none"><span class="wt-lbl">Source</span><span class="wt-val">'+w.from+'</span></div>';
+if(w.note)ch+='<div style="font-size:10px;color:var(--i3);padding:6px 0;font-style:italic">'+w.note+'</div>';
+ch+='</div></div>';
+});
+q('watch-cards').innerHTML=ch;
+var lh='';
+WATCH_LEDGER_DATA.slice().reverse().forEach(function(e){
+var amtStr='';
+if(e.type==='buy')amtStr='<span class="ledger-amt red">-'+fmt(e.out)+'</span>';
+else if(e.type==='sell')amtStr='<span class="ledger-amt grn">+'+fmt(e.inn)+'</span>';
+else amtStr='<span class="ledger-amt amb">Trade</span>';
+lh+='<div class="ledger-item"><div class="ledger-top"><div><div class="ledger-act">'+e.act+'</div><div class="ledger-watch">'+e.watch+'</div></div><div style="text-align:right"><span class="ledger-yr">'+e.yr+'</span><br>'+amtStr+'</div></div><div class="ledger-from">via '+e.from+'</div></div>';
+});
+q('watch-ledger').innerHTML=lh;
+var wt=q('w-wat');if(wt&&document.activeElement!==wt)wt.value=Math.round(totalVal);
+}
+function updWatch(el){var wi=parseInt(el.getAttribute('data-wi'));WATCHES[wi].paid=parseFloat(el.value)||0;renderWatches();calc();}
+function updWatchVal(el){var wi=parseInt(el.getAttribute('data-wi'));WATCHES[wi].val=parseFloat(el.value)||0;renderWatches();calc();}
 var saveTimer;
 function save(){clearTimeout(saveTimer);saveTimer=setTimeout(function(){try{var st={salary:n('salary'),rental:n('rental'),savings:n('savings'),savtgt:n('savtgt'),p1v:n('p1v'),p1m:n('p1m'),p1pay:n('p1pay'),p2v:n('p2v'),p2r:n('p2r'),wpen:n('w-pen'),wisa:n('w-isa'),wwat:n('w-wat'),wcar:n('w-car'),wrsu:n('w-rsu'),bills:BILLS.map(function(b){return {id:b.id,v:b.v,on:b.on};}),goals:GOALS.map(function(g){return {id:g.id,dn:g.dn};}),history:HISTORY};localStorage.setItem('mehdi_v5',JSON.stringify(st));}catch(e){}var sv=q('SV');sv.className='sv on';setTimeout(function(){sv.className='sv';},2000);},500);}
 function load(){try{var raw=localStorage.getItem('mehdi_v5');if(!raw)return;var st=JSON.parse(raw);var map={salary:'salary',rental:'rental',savings:'savings',savtgt:'savtgt',p1v:'p1v',p1m:'p1m',p1pay:'p1pay',p2v:'p2v',p2r:'p2r',wpen:'w-pen',wisa:'w-isa',wwat:'w-wat',wcar:'w-car',wrsu:'w-rsu'};Object.keys(map).forEach(function(k){if(st[k]!==undefined&&q(map[k]))q(map[k]).value=st[k];});if(st.bills)st.bills.forEach(function(b){var x=BILLS.find(function(y){return y.id===b.id;});if(x){x.v=b.v;x.on=b.on;}});if(st.goals)st.goals.forEach(function(b){var g=GOALS.find(function(y){return y.id===b.id;});if(g)g.dn=b.dn;});if(st.history)HISTORY=st.history;}catch(e){}}
