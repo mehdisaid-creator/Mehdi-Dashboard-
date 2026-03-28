@@ -342,7 +342,7 @@ var HISTORY=[];
 function q(id){return document.getElementById(id);}
 function n(id){var el=q(id);return el?(parseFloat(el.value)||0):0;}
 function fmt(v){return '£'+Math.round(v).toLocaleString('en-GB');}
-function go(i){var j;for(j=0;j<5;j++){q('p'+j).className='pg'+(j===i?' on':'');q('n'+j).className='ni'+(j===i?' on':'');}window.scrollTo(0,0);}
+function go(i){var j;for(j=0;j<5;j++){q('p'+j).className='pg'+(j===i?' on':'');q('n'+j).className='ni'+(j===i?' on':'');}window.scrollTo(0,0);if(i===4&&typeof renderWatches==='function')renderWatches();}
 function billsTotal(){return BILLS.reduce(function(s,b){return s+(b.on?b.v:0);},0);}
 function calc(){
 var sal=n('salary'),rent=n('rental');
