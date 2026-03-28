@@ -10,7 +10,7 @@
 <link rel="manifest" href="manifest.json">
 <title>Mehdi Said</title>
 <style>
-:root{--bg:#08090d;--s1:#0d0e13;--s2:#12131a;--s4:#22232e;--gold:#c8a96e;--i1:#eeeae3;--i2:#8a8680;--i3:#3e3d3a;--ln:rgba(255,255,255,.05);--l2:rgba(255,255,255,.09);--gr:#52d68a;--am:#f5b942;--rd:#f07070;--bl:#6baed6;--nh:76px}
+:root{--bg:#13141a;--s1:#1e2026;--s2:#25272e;--s4:#32343e;--gold:#c8a96e;--i1:#f2ede6;--i2:#b2ada6;--i3:#7a7672;--ln:rgba(255,255,255,.09);--l2:rgba(255,255,255,.15);--gr:#52d68a;--am:#f5b942;--rd:#f07070;--nh:76px}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--i1);font-family:system-ui,sans-serif;font-size:15px;line-height:1.5;min-height:100vh;padding-bottom:calc(var(--nh) + env(safe-area-inset-bottom,0px));-webkit-font-smoothing:antialiased}
 body::before{content:'';position:fixed;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);z-index:1000;pointer-events:none}
@@ -43,7 +43,7 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;height:1px;backgroun
 .rl{font-size:13px;color:var(--i2)}.rs{font-size:10px;color:var(--i3);margin-top:2px}
 .rv{font-family:monospace;font-size:13px;color:var(--i1);text-align:right}
 .rv.gld{color:var(--gold)}.rv.grn{color:var(--gr)}.rv.red{color:var(--rd)}.rv.amb{color:var(--am)}
-input.fi{background:transparent;border:none;border-bottom:1.5px solid var(--i3);outline:none;color:var(--i1);font-family:monospace;font-size:14px;text-align:right;padding:2px 0;caret-color:var(--gold);-webkit-tap-highlight-color:transparent;transition:border-color .2s;width:110px}
+input.fi{background:transparent;border:none;border-bottom:1.5px solid rgba(255,255,255,.28);outline:none;color:var(--i1);font-family:monospace;font-size:14px;text-align:right;padding:2px 0;caret-color:var(--gold);-webkit-tap-highlight-color:transparent;transition:border-color .2s;width:110px}
 input.fi:focus{border-color:var(--gold)}
 input.fi-lg{font-size:24px;width:150px}
 .fi-wrap{display:inline-flex;align-items:baseline;gap:3px}
@@ -292,7 +292,7 @@ input.fi-lg{font-size:24px;width:150px}
 <button class="ni" id="n4" onclick="go(4)"><div class="nd"></div><div class="nii">&#9671;</div><div class="nil">Wealth</div></button>
 </nav>
 <script>
-var BILLS=[{id:'mortgage',n:'Mortgage - Tradewinds',c:'property',v:970,on:true},{id:'nursery',n:'Nursery (Aliya + Amira)',c:'family',v:2500,on:true},{id:'energy',n:'EDF Energy',c:'essential',v:256,on:true},{id:'service',n:'Service charge Studio',c:'property',v:0,on:true},{id:'cleaner',n:'Cleaner',c:'lifestyle',v:160,on:true},{id:'carins',n:'Car insurance Aviva',c:'essential',v:175,on:true},{id:'homeins',n:'Home insurance',c:'essential',v:79,on:true},{id:'maeving',n:'Maeving insurance',c:'essential',v:95,on:true},{id:'fuel',n:'Fuel',c:'essential',v:110,on:true},{id:'internet',n:'Internet',c:'essential',v:59,on:true},{id:'phone',n:'Phone',c:'essential',v:58,on:true},{id:'nowtv',n:'NOW TV',c:'lifestyle',v:35,on:true},{id:'youtube',n:'YouTube Family',c:'lifestyle',v:25,on:true},{id:'chatgpt',n:'ChatGPT',c:'lifestyle',v:20,on:true},{id:'netflix',n:'Netflix',c:'lifestyle',v:18,on:true},{id:'council',n:'Council Tax',c:'essential',v:0,on:true}];
+var BILLS=[{id:'mortgage',n:'Mortgage - Tradewinds',c:'property',v:970,on:true},{id:'nursery',n:'Nursery (Aliya + Amira)',c:'family',v:2500,on:true},{id:'energy',n:'EDF Energy',c:'essential',v:256,on:true},{id:'service',n:'Service charge Studio',c:'property',v:0,on:true},{id:'cleaner',n:'Cleaner',c:'lifestyle',v:160,on:true},{id:'carins',n:'Car insurance Aviva',c:'essential',v:0,on:true},{id:'homeins',n:'Home insurance',c:'essential',v:0,on:true},{id:'fuel',n:'Fuel',c:'essential',v:110,on:true},{id:'internet',n:'Internet',c:'essential',v:59,on:true},{id:'phone',n:'Phone',c:'essential',v:58,on:true},{id:'nowtv',n:'NOW TV',c:'lifestyle',v:35,on:true},{id:'youtube',n:'YouTube Family',c:'lifestyle',v:25,on:true},{id:'chatgpt',n:'Claude',c:'lifestyle',v:20,on:true},{id:'netflix',n:'Netflix',c:'lifestyle',v:18,on:true},{id:'council',n:'Council Tax',c:'essential',v:0,on:true}];
 var GOALS=[{id:'g1',t:'Mirror wills - book solicitor',d:'URGENT - girls are 2',u:true,dn:false},{id:'g2',t:'JISAs - 375/mo standing orders each',d:'Before April 5th',u:true,dn:false},{id:'g3',t:'Cross-border tax advisor',d:'Q2 2026',u:false,dn:false},{id:'g4',t:'Rolex Sub swap - DJ41 Jubilee',d:'After April 14th W+W',u:false,dn:false},{id:'g5',t:'Salesforce comp call',d:'Mar 31 - Apr 10',u:false,dn:false}];
 var SCEN={nursery:false,france:false,promo:false};
 var HISTORY=[];
